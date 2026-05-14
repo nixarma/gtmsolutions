@@ -53,7 +53,7 @@ export default function AboutPage() {
           <div className="hidden md:flex justify-end items-center">
             <div className="relative w-[320px] h-[400px]">
               <div className="absolute rounded-sm pointer-events-none z-0" style={{ top: 18, left: 18, right: -18, bottom: -18, border: '1px solid rgba(153,51,47,0.3)' }} aria-hidden="true" />
-              <Image src="/images/nikhil-sarma.jpg" alt="Nikhil Sarma, GTM Coach" fill className="object-cover object-center rounded-sm relative z-10" priority />
+              <Image src="/images/nikhilsarma.jpg" alt="Nikhil Sarma, GTM Coach" fill className="object-cover object-center rounded-sm relative z-10" priority />
             </div>
           </div>
         </div>
