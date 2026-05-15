@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { useState } from 'react'
 
 const links = [
@@ -15,8 +16,15 @@ export default function Nav() {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50" style={{ background: 'var(--color-ink)' }}>
       <div className="max-w-[1200px] mx-auto px-[5%] py-4 flex items-center justify-between">
-        <Link href="/" className="font-display text-xl italic text-white" onClick={() => setOpen(false)}>
-          GTM Solutions
+        <Link href="/" className="flex items-center gap-3" onClick={() => setOpen(false)}>
+          <Image
+            src="/images/GSC logo.png"
+            alt="GTM Solutions Consulting"
+            width={32}
+            height={32}
+            className="rounded-sm"
+          />
+          <span className="font-display text-xl italic text-white">GTM Solutions Consulting</span>
         </Link>
 
         {/* Desktop links */}

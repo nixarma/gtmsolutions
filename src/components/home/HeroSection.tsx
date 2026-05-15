@@ -104,8 +104,10 @@ export default function HeroSection() {
               src="/images/gtm website hero image.webp"
               alt="A figure standing at the start of a deliberate path leading toward a clear destination — a visual metaphor for decision confidence in B2B buying"
               fill
+              sizes="(max-width: 768px) 0px, 320px"
               className="object-cover object-center rounded-sm relative z-10"
               priority
+              fetchPriority="high"
             />
           </div>
         </div>
