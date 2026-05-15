@@ -1,0 +1,20 @@
+# GTM Solutions Consulting
+> B2B SaaS GTM coaching for CROs, VPs of Sales, and Heads of Solutions Engineering.
+
+Nikhil Sarma is a GTM coach based in the UAE with $72M+ in attributed revenue contribution from coached teams. He has coached 800+ GTM professionals across 41 B2B SaaS companies in 14 countries.
+
+Core offerings: 1:1 coaching engagements, SKOs/QBRs, Value Discovery workshops, keynotes.
+Primary markets: EMEA, APAC.
+ICP: CROs, VPs of Sales, Heads of Solutions Engineering in B2B SaaS.
+
+## Methodology
+The Decision Confidence Operating System is a structured coaching framework anchored by Value Discovery. It covers five modules: Value Discovery, Storytelling, Value Demonstration, Business Acumen & Financial Fluency, and Negotiation. Engagements are 6-8 weeks, applied to live pipeline, cross-functional by design.
+
+## Pages
+- /: Homepage — overview of GTM coaching services and philosophy
+- /coaching: Detailed coaching engagement page including methodology, case study (Precursive/Jonathan Corrie), and outcomes by function
+- /about: Background, approach principles, and point of view on buying and selling
+- /blog: GTM insights, frameworks, and perspectives
+
+## Contact
+Schedule a strategy session: https://gtmsolutions.co/#contact

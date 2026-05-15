@@ -1,9 +1,19 @@
-'use client'
-
 import Link from 'next/link'
 import Image from 'next/image'
 import type { Metadata } from 'next'
 import CtaSection from '@/components/home/CtaSection'
+import HoverCard from '@/components/HoverCard'
+
+export const metadata: Metadata = {
+  title: 'GTM Coaching for B2B SaaS Teams | Nikhil Sarma',
+  description: 'Structured 6-8 week GTM coaching engagements for CROs and revenue leaders. Applied to live pipeline, cross-functional by design. Covering value discovery, storytelling, demos, and negotiation.',
+  alternates: { canonical: '/coaching' },
+  openGraph: {
+    title: 'GTM Coaching for B2B SaaS Teams | Nikhil Sarma',
+    description: 'Structured GTM coaching engagements for CROs and revenue leaders. Applied to live deals, not case studies. Cross-functional by design.',
+    url: '/coaching',
+  },
+}
 
 const heroStats = [
   { num: '6-8', label: 'Weeks per engagement', sub: 'Not a one-day event. A sustained system applied to your live pipeline.' },
@@ -45,14 +55,29 @@ const testimonials = [
   { pullquote: 'An absolute masterclass in value-based selling', body: 'Instead of traditional lectures, Nikhil demonstrates value-based selling through value-based teaching. Real life situations, live deal guidance, brainstorming exercises and constant reinforcement are the norm.', name: 'Gavin Thomas', role: 'Manager, Presales SEA', company: 'Locus' },
 ]
 
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: 'GTM Coaching Engagement',
+  provider: { '@type': 'Person', name: 'Nikhil Sarma', url: 'https://gtmsolutions.co/about' },
+  description: 'A structured 6-8 week GTM coaching engagement for B2B SaaS teams. Applied to live pipeline, cross-functional by design.',
+  serviceType: 'GTM Coaching',
+  areaServed: 'Worldwide',
+}
+
 export default function CoachingPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+
       {/* Hero — ink */}
       <section className="relative overflow-hidden" style={{ background: 'var(--color-ink)' }} aria-labelledby="hero-heading">
         <div className="pointer-events-none absolute bottom-[-80px] right-[-80px] w-[480px] h-[480px] rounded-full" style={{ background: 'radial-gradient(circle, rgba(153,51,47,0.07) 0%, transparent 68%)' }} aria-hidden="true" />
         <div className="max-w-[1200px] mx-auto px-[5%] py-16 grid grid-cols-1 md:grid-cols-2 gap-16 items-center relative z-10">
-          <div className="hero-content flex flex-col">
+          <div className="fade-up-children flex flex-col">
             <span className="inline-block self-start px-3 py-1 rounded-full text-[0.7rem] tracking-[0.18em] uppercase font-medium mb-6" style={{ color: 'rgba(255,255,255,0.9)', background: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.15)' }}>
               GTM Coaching &nbsp;&bull;&nbsp; B2B SaaS &nbsp;&bull;&nbsp; Cross-functional
             </span>
@@ -82,15 +107,6 @@ export default function CoachingPage() {
             ))}
           </div>
         </div>
-        <style jsx>{`
-          .hero-content > * { opacity: 0; animation: fadeUp 0.7s ease forwards; }
-          .hero-content > *:nth-child(1) { animation-delay: 0.1s; }
-          .hero-content > *:nth-child(2) { animation-delay: 0.25s; }
-          .hero-content > *:nth-child(3) { animation-delay: 0.4s; }
-          .hero-content > *:nth-child(4) { animation-delay: 0.5s; }
-          .hero-content > *:nth-child(5) { animation-delay: 0.6s; }
-          @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
-        `}</style>
       </section>
 
       {/* Outcomes by function — white */}
@@ -103,14 +119,17 @@ export default function CoachingPage() {
           </p>
           <div className="grid grid-cols-1 md:grid-cols-4 overflow-hidden rounded-sm" style={{ border: '1px solid rgba(26,26,26,0.1)' }} role="list">
             {forCards.map((c, i) => (
-              <article key={i} className="flex flex-col p-8 transition-colors duration-200" style={{ borderRight: i < forCards.length - 1 ? '1px solid rgba(26,26,26,0.1)' : 'none', background: 'var(--color-white)' }} role="listitem"
-                onMouseEnter={e => (e.currentTarget.style.background = 'var(--color-lightest2)')}
-                onMouseLeave={e => (e.currentTarget.style.background = 'var(--color-white)')}
+              <HoverCard
+                key={i}
+                tag="article"
+                className="flex flex-col p-8 transition-colors duration-200"
+                style={{ borderRight: i < forCards.length - 1 ? '1px solid rgba(26,26,26,0.1)' : 'none', background: 'var(--color-white)' }}
+                hoverStyle={{ background: 'var(--color-lightest2)' }}
               >
                 <div className="text-[0.68rem] tracking-[0.16em] uppercase font-medium mb-3" style={{ color: 'var(--color-red)' }}>{c.tag}</div>
                 <h3 className="font-display font-medium italic mb-3" style={{ fontSize: '1.2rem', color: 'var(--color-ink)', lineHeight: 1.3 }}>{c.title}</h3>
                 <p className="font-light mt-auto pt-3" style={{ fontSize: '0.84rem', color: 'var(--color-sage)', lineHeight: 1.72, borderTop: '1px solid rgba(26,26,26,0.1)' }}>{c.body}</p>
-              </article>
+              </HoverCard>
             ))}
           </div>
           <div className="mt-5 px-8 py-6 rounded-sm flex flex-col md:flex-row items-start md:items-center justify-between gap-6" style={{ background: 'var(--color-sage)' }}>
@@ -135,13 +154,15 @@ export default function CoachingPage() {
           <p className="font-display italic mb-12" style={{ fontSize: 'clamp(1.1rem, 1.8vw, 1.4rem)', color: 'rgba(255,255,255,0.7)', maxWidth: 620, lineHeight: 1.5 }}>It wasn't your team. It wasn't the trainer. It was the structure.</p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
             {problemCards.map((c, i) => (
-              <div key={i} className="p-9 rounded-sm transition-colors duration-200" style={{ background: 'var(--color-linen)', border: '1px solid rgba(255,255,255,0.07)' }}
-                onMouseEnter={e => (e.currentTarget.style.background = 'var(--color-lightest2)')}
-                onMouseLeave={e => (e.currentTarget.style.background = 'var(--color-linen)')}
+              <HoverCard
+                key={i}
+                className="p-9 rounded-sm transition-colors duration-200"
+                style={{ background: 'var(--color-linen)', border: '1px solid rgba(255,255,255,0.07)' }}
+                hoverStyle={{ background: 'var(--color-lightest2)' }}
               >
                 <h3 className="font-display font-medium italic mb-2.5" style={{ fontSize: '1.1rem', color: 'var(--color-ink)' }}>{c.title}</h3>
                 <p className="font-light" style={{ fontSize: '0.86rem', color: 'var(--color-sage)', lineHeight: 1.75 }}>{c.body}</p>
-              </div>
+              </HoverCard>
             ))}
           </div>
           <div className="mt-12 pt-10 flex flex-col items-center text-center gap-6" style={{ borderTop: '1px solid rgba(255,255,255,0.1)' }}>
@@ -183,14 +204,16 @@ export default function CoachingPage() {
           <p className="font-light mb-12" style={{ fontSize: '0.95rem', color: 'var(--color-sage)', lineHeight: 1.8, maxWidth: 560 }}>From a CRO or VP perspective, here is what sets this engagement apart from everything else you have tried.</p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
             {expectCards.map((c, i) => (
-              <div key={i} className="flex flex-col gap-3 p-9 rounded-sm transition-all duration-200" style={{ background: 'var(--color-lightest2)', border: '1px solid rgba(26,26,26,0.1)' }}
-                onMouseEnter={e => { e.currentTarget.style.background = 'var(--color-white)'; e.currentTarget.style.boxShadow = '0 4px 20px rgba(26,26,26,0.06)' }}
-                onMouseLeave={e => { e.currentTarget.style.background = 'var(--color-lightest2)'; e.currentTarget.style.boxShadow = 'none' }}
+              <HoverCard
+                key={i}
+                className="flex flex-col gap-3 p-9 rounded-sm transition-all duration-200"
+                style={{ background: 'var(--color-lightest2)', border: '1px solid rgba(26,26,26,0.1)' }}
+                hoverStyle={{ background: 'var(--color-white)', boxShadow: '0 4px 20px rgba(26,26,26,0.06)' }}
               >
                 <div className="font-display font-semibold" style={{ fontSize: 'clamp(1.4rem, 2vw, 2rem)', color: 'var(--color-red)', opacity: 0.4, lineHeight: 1 }}>{c.num}</div>
                 <h3 className="font-display font-medium italic" style={{ fontSize: '1.2rem', color: 'var(--color-ink)', lineHeight: 1.3 }}>{c.title}</h3>
                 <p className="font-light" style={{ fontSize: '0.86rem', color: 'var(--color-sage)', lineHeight: 1.75 }}>{c.body}</p>
-              </div>
+              </HoverCard>
             ))}
           </div>
         </div>
@@ -229,7 +252,6 @@ export default function CoachingPage() {
           <span className="inline-block text-[0.7rem] tracking-[0.18em] uppercase font-medium px-3 py-1 rounded-full mb-5" style={{ color: 'var(--color-red)', background: 'var(--color-red-light)', border: '1px solid var(--color-red-mid)' }}>Client Story</span>
           <h2 id="case-heading" className="font-display font-medium mb-10" style={{ fontSize: 'clamp(2rem, 3vw, 2.8rem)', color: 'var(--color-ink)', maxWidth: 600 }}>What changes when the whole GTM team learns together.</h2>
           <div className="overflow-hidden rounded-sm" style={{ background: 'var(--color-white)', border: '1px solid rgba(26,26,26,0.1)' }}>
-            {/* Header */}
             <div className="px-10 py-7 flex flex-col md:flex-row items-start md:items-center justify-between gap-6" style={{ background: 'var(--color-sage)' }}>
               <div>
                 <h3 className="font-display font-medium italic text-white mb-1" style={{ fontSize: '1.4rem' }}>Precursive</h3>
@@ -244,7 +266,6 @@ export default function CoachingPage() {
                 ))}
               </div>
             </div>
-            {/* Body */}
             <div className="p-10 grid grid-cols-1 md:grid-cols-2 gap-12">
               <div>
                 <h4 className="text-[0.7rem] tracking-[0.18em] uppercase font-medium mb-4" style={{ color: 'var(--color-red)' }}>The Challenge</h4>
@@ -272,7 +293,6 @@ export default function CoachingPage() {
                 ))}
               </div>
             </div>
-            {/* Quote */}
             <div className="mx-10 mb-10 pt-9" style={{ borderTop: '1px solid rgba(26,26,26,0.1)' }}>
               <div className="flex gap-1 mb-4 pl-5">
                 {[...Array(5)].map((_, i) => (
@@ -299,9 +319,12 @@ export default function CoachingPage() {
           <h2 id="testimonials-heading" className="font-display font-medium mb-10" style={{ fontSize: 'clamp(2rem, 3vw, 2.8rem)', color: 'var(--color-ink)' }}>What other clients say.</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
             {testimonials.map((t, i) => (
-              <article key={i} className="flex flex-col gap-4 p-8 rounded-sm transition-all duration-200" style={{ background: 'var(--color-white)', border: '1px solid rgba(26,26,26,0.1)' }}
-                onMouseEnter={e => { const el = e.currentTarget; el.style.borderColor = 'var(--color-red-mid)'; el.style.boxShadow = '0 6px 28px rgba(26,26,26,0.07)'; el.style.transform = 'translateY(-2px)' }}
-                onMouseLeave={e => { const el = e.currentTarget; el.style.borderColor = 'rgba(26,26,26,0.1)'; el.style.boxShadow = 'none'; el.style.transform = 'translateY(0)' }}
+              <HoverCard
+                key={i}
+                tag="article"
+                className="flex flex-col gap-4 p-8 rounded-sm transition-all duration-200"
+                style={{ background: 'var(--color-white)', border: '1px solid rgba(26,26,26,0.1)' }}
+                hoverStyle={{ borderColor: 'var(--color-red-mid)', boxShadow: '0 6px 28px rgba(26,26,26,0.07)', transform: 'translateY(-2px)' }}
               >
                 <div className="font-display font-semibold italic relative pl-4" style={{ fontSize: 'clamp(1rem, 1.5vw, 1.2rem)', color: 'var(--color-ink)', lineHeight: 1.38 }}>
                   <span className="absolute left-0 top-[-4px] not-italic font-normal" style={{ color: 'var(--color-red)', fontSize: '2rem', lineHeight: 1 }} aria-hidden="true">&#8220;</span>
@@ -312,7 +335,7 @@ export default function CoachingPage() {
                   <strong className="block font-medium" style={{ fontSize: '0.86rem', color: 'var(--color-ink)' }}>{t.name}</strong>
                   <span className="font-light" style={{ fontSize: '0.78rem', color: 'var(--color-sage)' }}>{t.role} &mdash; {t.company}</span>
                 </div>
-              </article>
+              </HoverCard>
             ))}
           </div>
         </div>

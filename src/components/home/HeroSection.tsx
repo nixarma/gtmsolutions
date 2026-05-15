@@ -22,7 +22,7 @@ export default function HeroSection() {
       <div className="max-w-[1200px] mx-auto px-[5%] py-16 grid grid-cols-1 md:grid-cols-[1.1fr_0.9fr] items-center gap-16 relative z-10 w-full">
 
         {/* Left: content */}
-        <div className="hero-content flex flex-col">
+        <div className="fade-up-children flex flex-col">
           <p
             className="inline-flex items-center gap-2 self-start px-3 py-1 rounded-full text-[0.7rem] tracking-[0.18em] uppercase font-medium mb-7"
             style={{
@@ -111,23 +111,7 @@ export default function HeroSection() {
         </div>
 
       </div>
-
-      <style jsx>{`
-        .hero-content > * {
-          opacity: 0;
-          animation: fadeUp 0.7s ease forwards;
-        }
-        .hero-content > *:nth-child(1) { animation-delay: 0.1s; }
-        .hero-content > *:nth-child(2) { animation-delay: 0.25s; }
-        .hero-content > *:nth-child(3) { animation-delay: 0.4s; }
-        .hero-content > *:nth-child(4) { animation-delay: 0.5s; }
-        .hero-content > *:nth-child(5) { animation-delay: 0.6s; }
-
-        @keyframes fadeUp {
-          from { opacity: 0; transform: translateY(24px); }
-          to   { opacity: 1; transform: translateY(0); }
-        }
-      `}</style>
+      
     </section>
   )
 }

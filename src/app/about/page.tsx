@@ -1,9 +1,20 @@
-'use client'
-
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import CtaSection from '@/components/home/CtaSection'
+import HoverCard from '@/components/HoverCard'
+
+export const metadata: Metadata = {
+  title: 'About Nikhil Sarma | GTM Coach & Consultant',
+  description: 'Nikhil Sarma is a B2B SaaS GTM coach who has contributed to $72M+ in revenue across EMEA and APAC. Background at Dolby, Optimizely, Contentful and more.',
+  alternates: { canonical: '/about' },
+  openGraph: {
+    title: 'About Nikhil Sarma | GTM Coach & Consultant',
+    description: 'Nikhil Sarma helps CROs and GTM leaders build buyer-first systems grounded in value discovery, decision confidence, and commercial clarity.',
+    url: '/about',
+    type: 'profile',
+  },
+}
 
 const approachCards = [
   { num: '01', title: 'Discovery before everything', body: 'Every engagement begins with understanding your team\'s specific deal environment, buyer personas, and competitive context. Coaching is never generic.' },
@@ -27,14 +38,31 @@ const testimonials = [
   { pullquote: 'A unique ability to reframe negotiation as a value conversation', body: 'He brings clarity, structure, and a deep understanding of how to align with what truly matters to the customer. A great session, and an even better perspective on how negotiation should actually work in enterprise deals.', name: 'Guru Vaidya', role: 'Head of APAC DMe Field Solution Consulting', company: 'Adobe' },
 ]
 
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Nikhil Sarma',
+  jobTitle: 'GTM Coach & Consultant',
+  url: 'https://gtmsolutions.co/about',
+  description: 'Nikhil Sarma is a B2B SaaS GTM coach with expertise in value discovery, presales coaching, value demonstration, and buyer-first sales methodology.',
+  knowsAbout: ['GTM coaching', 'presales coaching', 'value discovery', 'value demonstration', 'sales storytelling', 'decision confidence', 'solutions engineering', 'B2B SaaS sales'],
+  worksFor: { '@type': 'Organization', name: 'GTM Solutions Consulting', url: 'https://gtmsolutions.co' },
+  sameAs: ['https://linkedin.com/in/nikhilsarma'],
+}
+
 export default function AboutPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+
       {/* Hero — ink */}
       <section className="relative overflow-hidden" style={{ background: 'var(--color-ink)' }} aria-labelledby="about-heading">
         <div className="pointer-events-none absolute bottom-[-80px] right-[-80px] w-[480px] h-[480px] rounded-full" style={{ background: 'radial-gradient(circle, rgba(153,51,47,0.07) 0%, transparent 68%)' }} aria-hidden="true" />
         <div className="max-w-[1200px] mx-auto px-[5%] py-16 grid grid-cols-1 md:grid-cols-[1.1fr_0.9fr] items-center gap-16 relative z-10">
-          <div className="about-intro-content flex flex-col">
+          <div className="fade-up-children flex flex-col">
             <span className="inline-block self-start px-3 py-1 rounded-full text-[0.7rem] tracking-[0.18em] uppercase font-medium mb-6" style={{ color: 'rgba(255,255,255,0.9)', background: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.15)' }}>
               Hi, I'm Nikhil
             </span>
@@ -57,16 +85,6 @@ export default function AboutPage() {
             </div>
           </div>
         </div>
-        <style jsx>{`
-          .about-intro-content > * { opacity: 0; animation: fadeUp 0.7s ease forwards; }
-          .about-intro-content > *:nth-child(1) { animation-delay: 0.1s; }
-          .about-intro-content > *:nth-child(2) { animation-delay: 0.25s; }
-          .about-intro-content > *:nth-child(3) { animation-delay: 0.4s; }
-          .about-intro-content > *:nth-child(4) { animation-delay: 0.5s; }
-          .about-intro-content > *:nth-child(5) { animation-delay: 0.6s; }
-          .about-intro-content > *:nth-child(6) { animation-delay: 0.7s; }
-          @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
-        `}</style>
       </section>
 
       {/* Background — white */}
@@ -154,7 +172,7 @@ export default function AboutPage() {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 overflow-hidden rounded-sm" style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.08)' }}>
             {perspectives.map((p, i) => (
-              <div
+              <HoverCard
                 key={i}
                 className="p-9 transition-colors duration-200"
                 style={{
@@ -162,14 +180,13 @@ export default function AboutPage() {
                   borderBottom: i < 2 ? '1px solid rgba(255,255,255,0.07)' : 'none',
                   background: 'transparent',
                 }}
-                onMouseEnter={e => (e.currentTarget.style.background = 'rgba(255,255,255,0.03)')}
-                onMouseLeave={e => (e.currentTarget.style.background = 'transparent')}
+                hoverStyle={{ background: 'rgba(255,255,255,0.03)' }}
               >
                 <blockquote className="font-display italic text-white mb-3 pl-4" style={{ fontSize: 'clamp(1rem, 1.5vw, 1.2rem)', lineHeight: 1.45, borderLeft: '2px solid var(--color-red)' }}>
                   {p.quote}
                 </blockquote>
                 <p className="font-light" style={{ fontSize: '0.86rem', color: 'rgba(255,255,255,0.6)', lineHeight: 1.72 }}>{p.body}</p>
-              </div>
+              </HoverCard>
             ))}
           </div>
         </div>
@@ -183,12 +200,12 @@ export default function AboutPage() {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
             {testimonials.map((t, i) => (
-              <article
+              <HoverCard
                 key={i}
+                tag="article"
                 className="flex flex-col gap-4 p-8 rounded-sm transition-all duration-200"
                 style={{ background: 'var(--color-white)', border: '1px solid rgba(26,26,26,0.1)' }}
-                onMouseEnter={e => { const el = e.currentTarget; el.style.borderColor = 'var(--color-red-mid)'; el.style.boxShadow = '0 6px 28px rgba(26,26,26,0.07)'; el.style.transform = 'translateY(-2px)' }}
-                onMouseLeave={e => { const el = e.currentTarget; el.style.borderColor = 'rgba(26,26,26,0.1)'; el.style.boxShadow = 'none'; el.style.transform = 'translateY(0)' }}
+                hoverStyle={{ borderColor: 'var(--color-red-mid)', boxShadow: '0 6px 28px rgba(26,26,26,0.07)', transform: 'translateY(-2px)' }}
               >
                 <div className="font-display font-semibold italic relative pl-4" style={{ fontSize: 'clamp(1rem, 1.5vw, 1.1rem)', color: 'var(--color-ink)', lineHeight: 1.42 }}>
                   <span className="absolute left-0 top-[-4px] not-italic font-normal" style={{ color: 'var(--color-red)', fontSize: '1.8rem', lineHeight: 1 }} aria-hidden="true">&#8220;</span>
@@ -199,7 +216,7 @@ export default function AboutPage() {
                   <strong className="block font-medium" style={{ fontSize: '0.86rem', color: 'var(--color-ink)' }}>{t.name}</strong>
                   <span className="font-light" style={{ fontSize: '0.78rem', color: 'var(--color-sage)' }}>{t.role} &mdash; {t.company}</span>
                 </div>
-              </article>
+              </HoverCard>
             ))}
           </div>
         </div>
