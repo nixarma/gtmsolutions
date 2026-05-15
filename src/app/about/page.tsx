@@ -121,7 +121,7 @@ export default function AboutPage() {
               <h3 className="font-display font-medium italic mb-6" style={{ fontSize: 'clamp(1.6rem, 2.2vw, 2.2rem)', color: 'var(--color-ink)', lineHeight: 1.2 }}>
                 From practitioner<br />to coach.
               </h3>
-              <blockquote className="font-display italic pl-5" style={{ fontSize: 'clamp(1.2rem, 1.8vw, 1.6rem)', color: 'var(--color-ink)', lineHeight: 1.35, borderLeft: '2px solid var(--color-red)' }}>
+              <blockquote className="font-display italic pl-5" style={{ fontSize: 'clamp(1.2rem, 1.8vw, 1.6rem)', color: 'var(--color-ink)', lineHeight: 1.35, borderLeft: '2px solid var(--color-red-ondark)' }}>
                 "The root cause was almost always the same. Sellers trained in isolation, skills applied to hypothetical scenarios, then left alone with a live pipeline."
               </blockquote>
             </div>
@@ -182,7 +182,7 @@ export default function AboutPage() {
                 }}
                 hoverStyle={{ background: 'rgba(255,255,255,0.03)' }}
               >
-                <blockquote className="font-display italic text-white mb-3 pl-4" style={{ fontSize: 'clamp(1rem, 1.5vw, 1.2rem)', lineHeight: 1.45, borderLeft: '2px solid var(--color-red)' }}>
+                <blockquote className="font-display italic text-white mb-3 pl-4" style={{ fontSize: 'clamp(1rem, 1.5vw, 1.2rem)', lineHeight: 1.45, borderLeft: '2px solid var(--color-red-ondark)' }}>
                   {p.quote}
                 </blockquote>
                 <p className="font-light" style={{ fontSize: '0.86rem', color: 'rgba(255,255,255,0.6)', lineHeight: 1.72 }}>{p.body}</p>

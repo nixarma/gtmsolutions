@@ -70,7 +70,7 @@ export default function ProblemSection() {
               <div key={i} className="flex gap-5 items-center mb-7 last:mb-0">
                 <div
                   className="font-display font-semibold leading-none min-w-[72px]"
-                  style={{ fontSize: 'clamp(1.8rem, 3vw, 2.6rem)', color: 'var(--color-red)' }}
+                  style={{ fontSize: 'clamp(1.8rem, 3vw, 2.6rem)', color: 'var(--color-red-ondark)' }}
                 >
                   {s.num}
                 </div>
@@ -105,7 +105,7 @@ export default function ProblemSection() {
                   <Icon
                     size={16}
                     className="flex-shrink-0"
-                    style={{ color: '#C4554F', marginTop: 3 }}
+                    style={{ color: 'var(--color-red-ondark)', marginTop: 3 }}
                     aria-hidden="true"
                   />
                   <p

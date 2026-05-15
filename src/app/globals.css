@@ -8,6 +8,7 @@
   --color-red-dark: #7A2824;
   --color-red-light: #F5ECEA;
   --color-red-mid: #E8CECA;
+  --color-red-ondark: #E8837A;
   --color-sage: #6C786A;
   --color-sage-light: #E6EEEA;
   --color-sage-mid: #C8D9C6;
@@ -31,6 +32,7 @@ html {
   --color-red-dark: #7A2824;
   --color-red-light: #F5ECEA;
   --color-red-mid: #E8CECA;
+  --color-red-ondark: #E8837A;
   --color-sage: #6C786A;
   --color-sage-light: #E6EEEA;
   --color-sage-mid: #C8D9C6;
