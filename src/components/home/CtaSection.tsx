@@ -116,7 +116,7 @@ export default function CtaSection() {
         id="cal-embed-container"
       >
         <div id="cal-loading" className="absolute inset-0 flex flex-col items-center justify-center gap-3" aria-live="polite">
-          <div className="w-6 h-6 rounded-full border-2 animate-spin" style={{ borderColor: 'rgba(153,51,47,0.2)', borderTopColor: 'var(--color-red)' }} aria-hidden="true" />
+          <div className="w-6 h-6 rounded-full border-2 animate-spin" style={{ borderColor: 'rgba(153,51,47,0.2)', borderTopColor: 'var(--color-red-ondark)' }} aria-hidden="true" />
           <span className="uppercase tracking-[0.12em]" style={{ fontSize: '0.78rem', color: 'rgba(255,255,255,0.3)' }}>Loading calendar</span>
         </div>
         <div id="my-cal-inline-intros" style={{ width: '100%', height: '100%', overflow: 'scroll' }} />

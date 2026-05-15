@@ -84,7 +84,7 @@ export default function EngagementSection() {
                 {step.num}
               </div>
               <div>
-                <h4 className="font-display font-medium italic mb-1.5" style={{ fontSize: 'clamp(1rem, 1.5vw, 1.1rem)', color: 'var(--color-ink)' }}>{step.title}</h4>
+                <h3 className="font-display font-medium italic mb-1.5" style={{ fontSize: 'clamp(1rem, 1.5vw, 1.1rem)', color: 'var(--color-ink)' }}>{step.title}</h3>
                 <p className="font-light" style={{ fontSize: '0.86rem', color: 'var(--color-sage)', lineHeight: 1.72 }}>{step.body}</p>
               </div>
             </div>
