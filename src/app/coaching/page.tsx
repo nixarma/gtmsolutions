@@ -190,7 +190,7 @@ export default function CoachingPage() {
               width={720}
               height={480}
               className="mx-auto rounded-sm"
-              style={{ maxWidth: '100%', height: 'auto' }}
+              style={{ width: '100%', height: 'auto' }}
             />
           </div>
         </div>

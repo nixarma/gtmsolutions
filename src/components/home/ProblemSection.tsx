@@ -1,6 +1,8 @@
 'use client'
 
 import Link from 'next/link'
+import { TrendingDown, OctagonX, AlertCircle } from 'lucide-react'
+import type { LucideIcon } from 'lucide-react'
 
 const buyerStats = [
   { num: '74%', text: 'of buying teams demonstrate unhealthy conflict across stakeholders, making aligned decisions structurally harder' },
@@ -8,10 +10,10 @@ const buyerStats = [
   { num: '60%', text: 'of sales opportunities end in no decision, with the status quo winning by default' },
 ]
 
-const sellerProblems = [
-  'Deal slippage and persistently low win rates despite strong product capability and competitive positioning',
-  'Friction between AEs, SEs, and CS that creates inconsistency in how value is discovered, demonstrated, and defended',
-  'Leaders carrying forecasts built on deal activity rather than deal quality',
+const sellerProblems: { icon: LucideIcon; text: string }[] = [
+  { icon: TrendingDown, text: 'Deal slippage and persistently low win rates despite strong product capability and competitive positioning' },
+  { icon: OctagonX, text: 'Friction between AEs, SEs, and CS that creates inconsistency in how value is discovered, demonstrated, and defended' },
+  { icon: AlertCircle, text: 'Leaders carrying forecasts built on deal activity rather than deal quality' },
 ]
 
 export default function ProblemSection() {
@@ -92,25 +94,29 @@ export default function ProblemSection() {
             >
               Sellers Struggle With
             </h3>
-            {sellerProblems.map((p, i) => (
-              <div
-                key={i}
-                className="flex items-center gap-4 py-4"
-                style={{ borderBottom: i < sellerProblems.length - 1 ? '1px solid rgba(255,255,255,0.06)' : 'none' }}
-              >
+            {sellerProblems.map((p, i) => {
+              const Icon = p.icon
+              return (
                 <div
-                  className="flex-shrink-0 w-1.5 h-1.5 rounded-full"
-                  style={{ background: '#C4554F' }}
-                  aria-hidden="true"
-                />
-                <p
-                  className="font-light"
-                  style={{ fontSize: '0.88rem', color: 'rgba(255,255,255,0.82)', lineHeight: 1.65 }}
+                  key={i}
+                  className="flex items-start gap-4 py-4"
+                  style={{ borderBottom: i < sellerProblems.length - 1 ? '1px solid rgba(255,255,255,0.06)' : 'none' }}
                 >
-                  {p}
-                </p>
-              </div>
-            ))}
+                  <Icon
+                    size={16}
+                    className="flex-shrink-0"
+                    style={{ color: '#C4554F', marginTop: 3 }}
+                    aria-hidden="true"
+                  />
+                  <p
+                    className="font-light"
+                    style={{ fontSize: '0.88rem', color: 'rgba(255,255,255,0.82)', lineHeight: 1.65 }}
+                  >
+                    {p.text}
+                  </p>
+                </div>
+              )
+            })}
           </div>
         </div>
 

@@ -1,15 +1,32 @@
 'use client'
 
 import { useFadeUp } from '@/hooks/useFadeUp'
+import {
+  Share2,
+  X,
+  SlidersHorizontal,
+  TrendingDown,
+  Minus,
+  AlertCircle,
+  FileText,
+  CircleOff,
+  AlignStartVertical,
+} from 'lucide-react'
+import type { LucideIcon } from 'lucide-react'
 
-const cards = [
+const cards: {
+  tag: string
+  heading: string
+  challenges: { icon: LucideIcon; text: string }[]
+  body: string
+}[] = [
   {
     tag: 'CROs & VPs of GTM',
     heading: 'You\'re not missing leads. You\'re missing a shared operating model.',
     challenges: [
-      'Cross-functional misalignment across the GTM motion',
-      'Value gets lost between discovery and decision',
-      'Inconsistent buyer experience across deals',
+      { icon: Share2, text: 'Cross-functional misalignment across the GTM motion' },
+      { icon: X, text: 'Value gets lost between discovery and decision' },
+      { icon: SlidersHorizontal, text: 'Inconsistent buyer experience across deals' },
     ],
     body: 'When AEs, SEs, CS, and PS aren\'t working from the same framework, buyers feel it. Conflicting messages and poor handoffs are revenue problems disguised as process problems.',
   },
@@ -17,9 +34,9 @@ const cards = [
     tag: 'VPs of Sales',
     heading: 'You carry the number. Your buyers carry the risk.',
     challenges: [
-      'Win rates that plateau despite product strength',
-      'Deals that stall or slip into no-decision',
-      'Forecasts built on activity, not deal quality',
+      { icon: TrendingDown, text: 'Win rates that plateau despite product strength' },
+      { icon: Minus, text: 'Deals that stall or slip into no-decision' },
+      { icon: AlertCircle, text: 'Forecasts built on activity, not deal quality' },
     ],
     body: 'You know your team can sell. What you\'re less certain about is whether they\'re building the kind of buyer confidence that actually closes enterprise deals at the right margin.',
   },
@@ -27,17 +44,17 @@ const cards = [
     tag: 'VPs of Solutions Engineering',
     heading: 'Your SEs are technically capable but commercially underused.',
     challenges: [
-      'SEs lacking knowledge of why problems are worth solving',
-      'SEs seen as support, not as commercial drivers',
-      'Lack of a consistent methodology across the team',
+      { icon: FileText, text: 'SEs lacking knowledge of why problems are worth solving' },
+      { icon: CircleOff, text: 'SEs seen as support, not as commercial drivers' },
+      { icon: AlignStartVertical, text: 'Lack of a consistent methodology across the team' },
     ],
     body: 'The best Solutions teams shape deals. If your SEs are merely pulled into demos and technical Q&As, you\'re leaving influence and margin on the table.',
   },
 ]
 
 export default function ForSection() {
-
   const ref = useFadeUp()
+
   return (
     <section
       ref={ref as any}
@@ -112,25 +129,29 @@ export default function ForSection() {
 
               {/* Row 3: challenges */}
               <ul className="flex flex-col gap-2 mb-5" aria-label="Common challenges">
-                {card.challenges.map((c, j) => (
-                  <li
-                    key={j}
-                    className="flex items-start gap-3 px-4 py-3 rounded-sm text-[0.82rem]"
-                    style={{
-                      background: 'var(--color-red-light)',
-                      border: '1px solid var(--color-red-mid)',
-                      color: 'var(--color-ink)',
-                      lineHeight: 1.55,
-                    }}
-                  >
-                    <span
-                      className="flex-shrink-0 w-1.5 h-1.5 rounded-full"
-                      style={{ background: 'var(--color-red)', marginTop: 6 }}
-                      aria-hidden="true"
-                    />
-                    {c}
-                  </li>
-                ))}
+                {card.challenges.map((c, j) => {
+                  const Icon = c.icon
+                  return (
+                    <li
+                      key={j}
+                      className="flex items-start gap-3 px-4 py-3 rounded-sm text-[0.82rem]"
+                      style={{
+                        background: 'var(--color-red-light)',
+                        border: '1px solid var(--color-red-mid)',
+                        color: 'var(--color-ink)',
+                        lineHeight: 1.55,
+                      }}
+                    >
+                      <Icon
+                        size={14}
+                        className="flex-shrink-0"
+                        style={{ color: 'var(--color-red)', marginTop: 3 }}
+                        aria-hidden="true"
+                      />
+                      {c.text}
+                    </li>
+                  )
+                })}
               </ul>
 
               {/* Row 4: body */}

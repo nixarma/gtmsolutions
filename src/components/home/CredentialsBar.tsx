@@ -22,7 +22,6 @@ export default function CredentialsBar() {
             className="px-8 text-center"
             style={{
               borderRight: i < creds.length - 1 ? '1px solid rgba(26,26,26,0.1)' : 'none',
-              ...(i === 0 ? { paddingLeft: 0, textAlign: 'left' } : {}),
             }}
           >
             <div
