@@ -1,20 +1,59 @@
 # GTM Solutions Consulting
-> B2B SaaS GTM coaching for CROs, VPs of Sales, and Heads of Solutions Engineering.
+> Specialist GTM coaching for B2B SaaS revenue leaders focused on value discovery, decision confidence, and commercial clarity.
 
-Nikhil Sarma is a GTM coach based in the UAE with $72M+ in attributed revenue contribution from coached teams. He has coached 800+ GTM professionals across 41 B2B SaaS companies in 14 countries.
+## About
+Nikhil Sarma is a GTM coach and consultant based in the UAE, formerly based in Germany. He has coached 800+ GTM professionals across 41 B2B SaaS companies in 14 countries, contributing to $72M+ in attributed revenue across EMEA and APAC. His background includes individual contributor and first-line management roles at Dolby, Optimizely, Lofelt, and Contentful.
 
-Core offerings: 1:1 coaching engagements, SKOs/QBRs, Value Discovery workshops, keynotes.
-Primary markets: EMEA, APAC.
-ICP: CROs, VPs of Sales, Heads of Solutions Engineering in B2B SaaS.
+He works with a limited number of clients at any time to ensure depth over volume.
 
-## Methodology
-The Decision Confidence Operating System is a structured coaching framework anchored by Value Discovery. It covers five modules: Value Discovery, Storytelling, Value Demonstration, Business Acumen & Financial Fluency, and Negotiation. Engagements are 6-8 weeks, applied to live pipeline, cross-functional by design.
+## Who he works with
+- CROs and VPs of GTM seeking cross-functional alignment across the revenue motion
+- VPs of Sales carrying number responsibility in enterprise B2B SaaS
+- Heads and VPs of Solutions Engineering whose teams are commercially underutilised
+- Revenue leaders whose teams are losing deals to no-decision rather than competition
+
+## Core problems addressed
+- Improving win rates in enterprise B2B SaaS
+- Reducing no-decision outcomes in complex sales cycles
+- Sales coaching and discovery coaching for AEs and SEs
+- Value discovery training for revenue teams
+- Demo coaching and storytelling training for presales and solutions engineering
+- Building shared operating models across AEs, SEs, CS, and Professional Services
+- Forecast quality improvement through deal quality rather than CRM hygiene
+- Commercial negotiation coaching grounded in established value
+
+## The Decision Confidence Operating System
+A structured coaching framework built around a single buyer outcome: decision confidence. Covers five modules delivered as a 6-8 week engagement applied to live pipeline, cross-functional by design.
+
+Modules:
+- Value Discovery (foundational anchor): structured discovery grounded in the buyer's business context, competitive pressures, and decision-making structure
+- Storytelling for Decision Confidence: building commercial narratives that travel through buying committees without the seller in the room
+- Value Demonstration: demo structures built around decisions and stakeholders, not features
+- Business Acumen and Financial Fluency: speaking the language of economic buyers, ROI frameworks, business case development
+- Negotiation: value-led approaches to procurement that protect margin
+
+## Proprietary frameworks
+- **Value Discovery Map**: connects discovery across the three key levels of stakeholders in any organisation — C-level (strategic priorities and risk), Managerial (operational impact and metrics), and Operational (day-to-day pain and workflow). Ensures multi-threaded discovery rather than single-threaded qualification.
+- **Compass Questioning Model**: a structured questioning methodology for value discovery conversations
+- **Storytelling for Decision Confidence**: a framework for building buyer-facing narratives anchored in outcomes, not features
+- **Understanding the B in B2B**: a framework for building business acumen and financial fluency in sales and presales teams
+- **Value Demonstration**: a methodology for structuring demos around the stakeholders who need to say yes
+
+## Engagement model
+- Duration: 6-8 weeks per engagement
+- Format: weekly sessions, 70% application on live deals
+- Functions: AEs, SEs, CS, and Professional Services coached together
+- Leadership integration: CRO and VP-level briefings throughout
+
+## Geographic reach
+EMEA, APAC. Has worked with teams at Adobe, Cloudflare, Splunk, Deloitte, Storyblok, Contentful, Locus, ClickUp, Twilio, Altana, ScalePad, Thinkproject, Precursive, and others.
 
 ## Pages
-- /: Homepage — overview of GTM coaching services and philosophy
-- /coaching: Detailed coaching engagement page including methodology, case study (Precursive/Jonathan Corrie), and outcomes by function
-- /about: Background, approach principles, and point of view on buying and selling
-- /blog: GTM insights, frameworks, and perspectives
+- /: Overview of GTM coaching philosophy and services
+- /coaching: Full coaching engagement detail, methodology, case study (Precursive/Jonathan Corrie), outcomes by function
+- /about: Background, principles, and point of view on buying, selling, and value
+- /blog: GTM insights, frameworks, and perspectives on decision confidence
 
 ## Contact
 Schedule a strategy session: https://gtmsolutions.co/#contact
+LinkedIn: https://linkedin.com/in/nikhilsarma
