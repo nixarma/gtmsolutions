@@ -86,7 +86,7 @@ export default function Footer() {
           {/* Company column */}
           <div>
             <h3 className="font-body font-medium mb-5" style={{ fontSize: '0.68rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.35)' }}>
-              Company
+              Resources
             </h3>
             <ul className="flex flex-col gap-3">
               {company.map(c => (

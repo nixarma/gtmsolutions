@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     locale: 'en_US',
     images: [
       {
-        url: '/images/nikhil-sarma.jpg',
+        url: '/images/nikhil-sarma.webp',
         width: 1200,
         height: 630,
         alt: 'GTM Solutions Consulting',

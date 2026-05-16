@@ -32,7 +32,7 @@ content/
 
 Copy these from the Claude Design zip into `public/images/blog/`:
 
-- `assets/nikhil-sarma.jpg`       -> `public/images/blog/nikhil-sarma.jpg`
+- `assets/nikhil-sarma.webp`       -> `public/images/blog/nikhil-sarma.webp`
 - `assets/hero-image.webp`        -> `public/images/blog/hero-image.webp`
 - `assets/decision-confidence.webp` -> `public/images/blog/decision-confidence.webp`
 
