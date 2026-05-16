@@ -12,6 +12,7 @@ const services = [
 const company = [
   { label: 'About', href: '/about', active: true },
   { label: 'Blog', href: '/blog', active: true },
+  { label: 'Operational Walkthrough', href: '/resources/opwalk', active: false },
 ]
 
 const contact = [
@@ -83,7 +84,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Company column */}
+          {/* Resources column */}
           <div>
             <h3 className="font-body font-medium mb-5" style={{ fontSize: '0.68rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.35)' }}>
               Resources
