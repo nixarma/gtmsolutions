@@ -256,6 +256,7 @@ export default async function ArticlePage(
                     className="blog-author-bio__avatar"
                     src={post.author.avatar}
                     alt={post.author.name}
+                    loading="lazy"
                   />
                 )}
                 <div>
