@@ -552,7 +552,7 @@
   text-transform: uppercase; letter-spacing: 0.10em;
   padding: 0.75rem 2rem;
   border-radius: 3px;
-  background: var(--color-red); color: #fff;
+  background: var(--color-red); color: #fff !important;
   text-decoration: none;
   transition: background 200ms;
   white-space: nowrap;
