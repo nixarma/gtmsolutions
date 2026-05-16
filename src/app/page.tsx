@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: 'https://images.squarespace-cdn.com/content/v1/6691a8029ee17272f6d299ae/b1d8957c-144e-4f57-a4f6-5631f0523c2b/GSC+Circle+Crop.png?format=1500w',
+        url: '/images/GSC Logo.png?format=1500w',
       },
     ],
   },
