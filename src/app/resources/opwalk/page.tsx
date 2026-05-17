@@ -9,7 +9,7 @@
  *   opwalk.css → src/app/resources/opwalk/opwalk.css
  *
  * The sticky stepper active-phase highlighting requires a client component.
- * See <PhaseStepper> below - it is already promoted to 'use client'.
+ * See <PhaseStepper> below — it is already promoted to 'use client'.
  *
  * CTA: the design used two buttons + a "What you'll leave with" card.
  * This conversion keeps that layout and adds <CalEmbed> in place of the
@@ -20,7 +20,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { CalEmbed } from '@/components/blog/BlogClientComponents'
-import '@/app/blog/blog.css'
 import './opwalk.css'
 
 export const metadata: Metadata = {
@@ -59,29 +58,29 @@ const PHASES: Phase[] = [
     num: '01', id: 'phase-1',
     label: 'Context Setting',
     durationMin: '10 min',
-    aim: 'Understand who you are talking to, what they own, and which process is worth mapping in detail. You are choosing the right thread to pull - not pulling all of them.',
+    aim: 'Understand who you are talking to, what they own, and which process is worth mapping in detail. You are choosing the right thread to pull — not pulling all of them.',
     resources: ['Prior discovery notes', 'CRM activity log', 'Org chart / LinkedIn research', 'Any RFP already shared'],
     intro: 'Establish scope before any process detail. You are orienting, not interrogating.',
     questions: [
-      'Walk me through what your team is responsible for - end to end.',
+      'Walk me through what your team is responsible for — end to end.',
       'What does a typical week look like for someone in your role?',
       'Which process would have the highest impact if it ran faster or more consistently?',
       'How many people are involved in this process? Across which teams?',
-      'Where does the process start - what triggers it?',
+      'Where does the process start — what triggers it?',
     ],
   },
   {
     num: '02', id: 'phase-2',
     label: 'Current State Map',
     durationMin: '15 min',
-    aim: 'Build a shared, accurate picture of how the work flows today - step by step, system by system. This map becomes the foundation for every AI conversation that follows.',
-    resources: ['Whiteboarding software - Miro or FigJam', 'Blank process template', 'Screen share ready to sketch in real time'],
+    aim: 'Build a shared, accurate picture of how the work flows today — step by step, system by system. This map becomes the foundation for every AI conversation that follows.',
+    resources: ['Whiteboarding software — Miro or FigJam', 'Blank process template', 'Screen share ready to sketch in real time'],
     intro: 'Build a step-by-step picture of how the work actually flows today. No assumptions.',
     questions: [
       'Walk me through exactly what happens from trigger to output.',
       'What does the handoff look like between teams at that point?',
       'What systems or tools are involved at each step?',
-      'Where do things slow down - or stop - most often?',
+      'Where do things slow down — or stop — most often?',
       'Is this the same every time, or does it vary by case?',
     ],
   },
@@ -89,14 +88,14 @@ const PHASES: Phase[] = [
     num: '03', id: 'phase-3',
     label: 'Process Deep Dive',
     durationMin: '20 min',
-    aim: 'Surface the AI signal data hidden inside each process step - volume, consistency, input quality, and decision complexity. What looks like a workflow conversation is actually a readiness assessment.',
+    aim: 'Surface the AI signal data hidden inside each process step — volume, consistency, input quality, and decision complexity. What looks like a workflow conversation is actually a readiness assessment.',
     resources: ['The map built in Phase 2', 'AI readiness scoring framework', 'Volume / frequency notes template'],
-    intro: 'Interrogate each step for volume, consistency, and decision complexity - these are your AI signal indicators.',
+    intro: 'Interrogate each step for volume, consistency, and decision complexity — these are your AI signal indicators.',
     split: true,
     questions: [
       'What happens next?',
       'Who else is involved at this step?',
-      'How often does this happen - and at what volume?',
+      'How often does this happen — and at what volume?',
       'Where does this information come from? How consistent is it?',
       'Does this step require human judgment, or is it mostly rule-based?',
       'Are there dependencies on other teams?',
@@ -104,12 +103,12 @@ const PHASES: Phase[] = [
     ],
     captures: [
       'Tools and systems used at each step',
-      'Manual, repetitive steps - high-volume tasks are AI candidates',
-      'Handoffs between teams - where data changes hands',
-      'Wait times and delays - especially approval or review bottlenecks',
-      'Data re-entry and format inconsistency - signals poor AI readiness',
-      'Frustrations - around speed, scale, or consistency',
-      'Tasks done the same way every time - strongest AI signal',
+      'Manual, repetitive steps — high-volume tasks are AI candidates',
+      'Handoffs between teams — where data changes hands',
+      'Wait times and delays — especially approval or review bottlenecks',
+      'Data re-entry and format inconsistency — signals poor AI readiness',
+      'Frustrations — around speed, scale, or consistency',
+      'Tasks done the same way every time — strongest AI signal',
     ],
   },
   {
@@ -120,14 +119,14 @@ const PHASES: Phase[] = [
     resources: ['Phase 3 notes with flagged steps', 'Value hypothesis template', 'Deal qualification scorecard'],
     intro: 'Pick 1\u20132 pain points surfaced in Phase 3 and go deep. This is where the business case is built.',
     questions: [
-      'You mentioned [pain point] - tell me more about that.',
+      'You mentioned [pain point] — tell me more about that.',
       'How often does this happen? At what volume?',
       'What\u2019s the impact when this goes wrong?',
       'What other approaches have you tried before?',
       'How long does it take today? What would ideal look like?',
       'Who else feels this pain?',
       'Is the input consistent enough to automate, or does it vary too much?',
-      'If this step happened instantly and at any scale - what would that unlock?',
+      'If this step happened instantly and at any scale — what would that unlock?',
       'Who in your organization would need to support a change to how this works?',
     ],
   },
@@ -164,13 +163,13 @@ const STATS = [
 
 const SIGNALS_GOOD = [
   { label: 'Strong AI candidate', body: 'High volume, consistent inputs, rule-based steps, clear output. The process runs the same way every time.' },
-  { label: 'Transformation opportunity', body: 'Something they can\u2019t do at all today - scale, speed, or language coverage - not just doing the same thing faster.' },
+  { label: 'Transformation opportunity', body: 'Something they can\u2019t do at all today — scale, speed, or language coverage — not just doing the same thing faster.' },
 ]
 const SIGNALS_RISK = [
   { label: 'Weak AI candidate', body: 'Low frequency, high variability, heavy editorial judgment, or data that is inconsistent and unstructured.' },
   { label: 'Data readiness risk', body: 'Inconsistent taxonomy, unstructured content, or data spread across disconnected systems. AI will not fix a messy foundation.' },
   { label: 'Change readiness risk', body: 'Strong process ownership by one person, previous failed automation attempts, or no executive sponsor for change.' },
-  { label: 'Integration risk', body: 'Key data lives in systems outside the buyer\u2019s control - procurement, legal, or IT approval likely required.' },
+  { label: 'Integration risk', body: 'Key data lives in systems outside the buyer\u2019s control — procurement, legal, or IT approval likely required.' },
 ]
 
 const PRACTICES = [
@@ -195,12 +194,12 @@ const RED_FLAGS = [
 
 const POST_INTERVIEW = [
   { when: 'Within 2 hours', label: 'Document the flow', body: 'Capture the process map and flag each step as strong, weak, or unclear AI candidate.' },
-  { when: 'Within 24 hours', label: 'Send the summary', body: 'Thank you note with your initial read on where AI fits - and, importantly, where it doesn\u2019t.' },
+  { when: 'Within 24 hours', label: 'Send the summary', body: 'Thank you note with your initial read on where AI fits — and, importantly, where it doesn\u2019t.' },
   { when: 'Same day', label: 'Tag in CRM', body: 'Log AI readiness signals: volume, data quality, integration constraints, change readiness.' },
   { when: 'Before the demo', label: 'Build the demo brief', body: 'Map the 2\u20133 strongest AI use-cases to specific capabilities. That\u2019s your demo. Nothing else.' },
 ]
 
-/* Testimonials - placeholder copy. Replace with real AE/SE quotes before shipping. */
+/* Testimonials — placeholder copy. Replace with real AE/SE quotes before shipping. */
 type TestimonialVariant = 'default' | 'linen' | 'ink'
 type TestimonialData = {
   quote: string; name: string; role: string; company: string
@@ -209,12 +208,12 @@ type TestimonialData = {
 
 const TESTIMONIALS: Record<'midPhases' | 'midPractices' | 'preCta', TestimonialData> = {
   midPhases: {
-    quote: 'I used to walk in with a generic AI demo. After three deals with this framework, demo prep dropped in half and our close rate on AI-led deals doubled. Phase 3 catches the deals that aren\u2019t really ready - before we burn a month on them.',
+    quote: 'I used to walk in with a generic AI demo. After three deals with this framework, demo prep dropped in half and our close rate on AI-led deals doubled. Phase 3 catches the deals that aren\u2019t really ready — before we burn a month on them.',
     name: 'Sarah Chen', role: 'Senior Account Executive', company: 'Northwind Logistics',
     initials: 'SC', variant: 'default',
   },
   midPractices: {
-    quote: 'The walkthrough changed how my engineering team prepares for technical demos. We\u2019re not demoing features anymore - we\u2019re showing prospects their own process with AI doing the parts they told us were broken.',
+    quote: 'The walkthrough changed how my engineering team prepares for technical demos. We\u2019re not demoing features anymore — we\u2019re showing prospects their own process with AI doing the parts they told us were broken.',
     name: 'Marcus Rivera', role: 'Principal Sales Engineer', company: 'Helios Health',
     initials: 'MR', variant: 'linen',
   },
@@ -328,14 +327,14 @@ function PhaseBlock({ phase, idx }: { phase: Phase; idx: number }) {
 
 export default function OpwalkPage() {
   return (
-    <main style={{ paddingTop: '64px' }}>
+    <main style={{ paddingTop: '64px', background: 'var(--color-ink)' }}>
 
       {/* ── Hero ──────────────────────────────────────────────── */}
       <section className="hero">
         <div className="hero-inner">
           <div className="fade-up-children">
             <div className="crumbs">
-              <Link href="/resources">Resources</Link>
+              <Link href="/">Resources</Link>
               <span className="sep">›</span>
               <span className="here">Operational Walkthrough</span>
             </div>
@@ -345,20 +344,20 @@ export default function OpwalkPage() {
             </div>
             <h1>Find where AI <em>actually fits</em><br />in your prospect&apos;s workflow.</h1>
             <p className="lede">
-              Stop demoing AI features nobody asked for. <br /><br /> 
-              A 5-phase structured discovery framework for AEs and SEs - built around the buyer&apos;s process, not your feature list.
+              Stop demoing AI features nobody asked for. A 5-phase structured discovery
+              framework for AEs and SEs — built around the buyer&apos;s process, not your feature list.
             </p>
             <div className="hero-meta">
-              <span>Read time <b>10 min</b></span>
+              <span>Read time <b>9 min</b></span>
               <span>For <b>AEs &amp; SEs</b></span>
               <span>Use it <b>pre-demo</b></span>
             </div>
           </div>
 
-          {/* Anatomy of the walkthrough card */}
-          <aside className="anatomy" aria-label="Anatomy of the walkthrough">
+          {/* Anatomy of the hour card */}
+          <aside className="anatomy" aria-label="Anatomy of the hour">
             <div className="anatomy-head">
-              <span>Anatomy of the walkthrough</span>
+              <span>Anatomy of the hour</span>
               <span className="ttl">60 min</span>
             </div>
             <div
@@ -434,14 +433,15 @@ export default function OpwalkPage() {
       {/* ── Pull-quote band ───────────────────────────────────── */}
       <section className="pull">
         <div className="pull-inner">
-                <div className="pull-quote">
-            A demo built before a walkthrough is a best guess.<br />
-            A demo built after a walkthrough is a <em>response to a problem</em><br />the prospect has already told you matters.</div>
-            <div className="attr">The point of view</div>
+          <div className="pull-quote">
+            A demo built before a walkthrough is a guess. A demo built after a walkthrough
+            is a <em>response to a problem</em> the prospect has already told you matters.
+          </div>
+          <div className="attr">The point of view</div>
         </div>
       </section>
 
-      {/* ── Testimonial - after the framework ────────────────── */}
+      {/* ── Testimonial — after the framework ────────────────── */}
       <Testimonial {...TESTIMONIALS.midPhases} />
 
       {/* ── AI Readiness scorecard ────────────────────────────── */}
@@ -452,7 +452,7 @@ export default function OpwalkPage() {
             <h2 style={{ marginTop: '1.25rem' }}>AI Readiness <em>signals</em> &amp; risks</h2>
             <p>
               Sort what you hear into two columns as you go. By the end of the call,
-              you should know which signal each step belongs to - and whether this
+              you should know which signal each step belongs to — and whether this
               is a deal that&apos;s ready for a demo.
             </p>
           </div>
@@ -494,7 +494,7 @@ export default function OpwalkPage() {
           <div className="practices-head">
             <span className="chip chip--red">In-room habits</span>
             <h2 style={{ marginTop: '1.25rem' }}>Good practices</h2>
-            <p>The walkthrough is a buyer-centric conversation. These habits keep you on that side of the table - and out of demo-mode reflexes.</p>
+            <p>The walkthrough is a buyer-centric conversation. These habits keep you on that side of the table — and out of demo-mode reflexes.</p>
           </div>
           <div className="practice-grid">
             {PRACTICES.map((p, i) => (
@@ -508,14 +508,14 @@ export default function OpwalkPage() {
         </div>
       </section>
 
-      {/* ── Testimonial - between Practices and Flags ─────────── */}
+      {/* ── Testimonial — between Practices and Flags ─────────── */}
       <Testimonial {...TESTIMONIALS.midPractices} />
 
       {/* ── Red Flags ─────────────────────────────────────────── */}
       <section className="flags">
         <div className="flags-inner">
           <div className="flags-head">
-            <span className="chip chip--red">Overheard in discovery</span>
+            <span className="chip chip--on-dark">Overheard in discovery</span>
             <h2>Red flags <em>worth pausing</em> for.</h2>
             <p>If you hear any of these, slow down. Each one warrants a conversation before you build a single demo slide.</p>
           </div>
@@ -546,7 +546,7 @@ export default function OpwalkPage() {
         </div>
       </section>
 
-      {/* ── Testimonial - before CTA ──────────────────────────── */}
+      {/* ── Testimonial — before CTA ──────────────────────────── */}
       <Testimonial {...TESTIMONIALS.preCta} />
 
       {/* ── CTA + Booking embed ───────────────────────────────── */}
@@ -556,20 +556,20 @@ export default function OpwalkPage() {
             <p className="kicker">Want to run this with your team?</p>
             <h2>Book a <em>diagnostic conversation.</em></h2>
             <p>
-              60 minutes. We&apos;ll walk through one live deal and find the AI fit -
+              60 minutes. We&apos;ll walk through one live deal and find the AI fit —
               or the reason a demo would be premature.
             </p>
             <div className="cta-card">
               <h3>What you&apos;ll leave with</h3>
               <ul>
                 <li>A scored process map of one live deal</li>
-                <li>2&ndash;3 AI use-cases worth demoing - and the ones that aren&apos;t</li>
+                <li>2&ndash;3 AI use-cases worth demoing — and the ones that aren&apos;t</li>
                 <li>A demo brief your team can build to</li>
                 <li>A list of the readiness risks to flag in CRM</li>
               </ul>
             </div>
           </div>
-          {/* Cal.com embed - lazy-loaded via IntersectionObserver */}
+          {/* Cal.com embed — lazy-loaded via IntersectionObserver */}
           <CalEmbed calLink={CAL_LINK} slug="opwalk" />
         </div>
       </section>

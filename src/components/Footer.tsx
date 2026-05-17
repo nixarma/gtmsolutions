@@ -75,7 +75,7 @@ export default function Footer() {
                       {s.label}
                     </Link>
                   ) : (
-                    <span className="font-light cursor-default" style={{ fontSize: '0.88rem', color: 'rgba(255,255,255,0.45)' }}>
+                    <span className="font-light cursor-default" style={{ fontSize: '0.88rem', color: 'rgba(255,255,255,0.6)' }}>
                       {s.label}
                     </span>
                   )}
@@ -139,19 +139,19 @@ export default function Footer() {
 
         {/* Bottom bar */}
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 pt-8">
-          <p className="font-light" style={{ fontSize: '0.78rem', color: 'rgba(255,255,255,0.45)' }}>
+          <p className="font-light" style={{ fontSize: '0.78rem', color: 'rgba(255,255,255,0.6)' }}>
             GTM Solutions Consulting &copy; {new Date().getFullYear()}
           </p>
           <div className="flex gap-6">
-            <Link href="/impressum" className="font-light transition-colors" style={{ fontSize: '0.78rem', color: 'rgba(255,255,255,0.45)', letterSpacing: '0.1em', textTransform: 'uppercase' }}
+            <Link href="/impressum" className="font-light transition-colors" style={{ fontSize: '0.78rem', color: 'rgba(255,255,255,0.6)', letterSpacing: '0.1em', textTransform: 'uppercase' }}
               onMouseEnter={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.5)')}
-              onMouseLeave={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.25)')}
+              onMouseLeave={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.6)')}
             >
               Impressum
             </Link>
-            <Link href="/privacy" className="font-light transition-colors" style={{ fontSize: '0.78rem', color: 'rgba(255,255,255,0.45)', letterSpacing: '0.1em', textTransform: 'uppercase' }}
+            <Link href="/privacy" className="font-light transition-colors" style={{ fontSize: '0.78rem', color: 'rgba(255,255,255,0.6)', letterSpacing: '0.1em', textTransform: 'uppercase' }}
               onMouseEnter={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.5)')}
-              onMouseLeave={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.25)')}
+              onMouseLeave={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.6)')}
             >
               Privacy
             </Link>

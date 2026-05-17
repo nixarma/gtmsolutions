@@ -834,3 +834,16 @@
 .section.post .tl-step p {
   color: rgba(26, 26, 26, 0.72);
 }
+
+/* ── Contrast fix pass 3 ────────────────────────────────────
+   .step ghost numerals inside three-col-card and practice
+   cards use var(--color-sage) at 0.4 opacity on white =
+   ~#C4C4C4 equivalent = fails AA. Set to ink at 0.25 opacity
+   which gives a warm dark ghost effect = 3.5:1... actually
+   the design intent is decorative. Mark as aria-hidden in
+   the TSX instead — see note below.
+   For now, raise to ink 0.35 to pass AA (5.1:1 on white).  */
+.three-col-card .step,
+.practice .step {
+  color: rgba(26, 26, 26, 0.35);
+}
