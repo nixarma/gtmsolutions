@@ -38,7 +38,7 @@ export default function EngagementSection() {
       <div className="max-w-[1200px] mx-auto px-[5%] py-16 grid grid-cols-1 md:grid-cols-[1fr_1.4fr] gap-20 items-start">
         <div>
           <span
-            className="inline-block text-[0.7rem] tracking-[0.18em] uppercase font-medium px-3 py-1 rounded-full mb-5"
+            className="inline-block text-[0.75rem] tracking-[0.18em] uppercase font-medium px-3 py-1 rounded-full mb-5"
             style={{ color: 'var(--color-red)', background: 'var(--color-red-light)', border: '1px solid var(--color-red-mid)' }}
           >
             How We Will Work Together
@@ -46,7 +46,7 @@ export default function EngagementSection() {
           <h2 id="engagement-heading" className="font-display font-medium mb-5" style={{ fontSize: 'clamp(2rem, 3vw, 2.8rem)', color: 'var(--color-ink)' }}>
             Far more than training.
           </h2>
-          <p className="font-light mb-4" style={{ fontSize: '0.95rem', color: 'var(--color-sage)', lineHeight: 1.85 }}>
+          <p className="mb-4" style={{ fontSize: '1rem', color: 'var(--color-sage)', lineHeight: 1.85 }}>
             Most programs produce short-term awareness. Skills start to degrade the very next day because they aren't applied to real opps and are not reinforced.
           </p>
           <div className="grid grid-cols-2 gap-3 mt-8" aria-label="Engagement structure">
@@ -58,7 +58,7 @@ export default function EngagementSection() {
                 >
                   {s.value}
                 </div>
-                <div className="font-light" style={{ fontSize: '0.82rem', color: 'var(--color-sage)', lineHeight: 1.5 }}>
+                <div style={{ fontSize: '0.84rem', color: 'var(--color-sage)', lineHeight: 1.5 }}>
                   {s.label}{' '}<strong style={{ color: 'var(--color-ink)', fontWeight: 500 }}>{s.strong}</strong>
                 </div>
               </div>
@@ -84,8 +84,8 @@ export default function EngagementSection() {
                 {step.num}
               </div>
               <div>
-                <h3 className="font-display font-medium italic mb-1.5" style={{ fontSize: 'clamp(1rem, 1.5vw, 1.1rem)', color: 'var(--color-ink)' }}>{step.title}</h3>
-                <p className="font-light" style={{ fontSize: '0.86rem', color: 'var(--color-sage)', lineHeight: 1.72 }}>{step.body}</p>
+                <h3 className="font-display font-medium italic mb-1.5" style={{ fontSize: 'clamp(1.25rem, 1.8vw, 1.5rem)', color: 'var(--color-ink)' }}>{step.title}</h3>
+                <p style={{ fontSize: '0.92rem', color: 'var(--color-sage)', lineHeight: 1.72 }}>{step.body}</p>
               </div>
             </div>
           ))}

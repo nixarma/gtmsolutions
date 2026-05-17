@@ -40,7 +40,7 @@ export default function SystemSection() {
     >
       <div className="max-w-[1200px] mx-auto px-[5%] py-16">
         <span
-          className="inline-block text-[0.7rem] tracking-[0.18em] uppercase font-medium px-3 py-1 rounded-full mb-5"
+          className="inline-block text-[0.75rem] tracking-[0.18em] uppercase font-medium px-3 py-1 rounded-full mb-5"
           style={{
             color: 'rgba(255,255,255,0.9)',
             background: 'rgba(255,255,255,0.1)',
@@ -85,8 +85,8 @@ export default function SystemSection() {
               >
                 {card.num}
               </div>
-              <h3 className="font-display font-medium italic text-white mb-2" style={{ fontSize: 'clamp(1rem, 1.5vw, 1.2rem)' }}>{card.title}</h3>
-              <p className="font-light" style={{ fontSize: '0.86rem', color: 'rgba(255,255,255,0.82)', lineHeight: 1.78 }}>{card.body}</p>
+              <h3 className="font-display font-medium italic text-white mb-2" style={{ fontSize: 'clamp(1.25rem, 1.8vw, 1.5rem)' }}>{card.title}</h3>
+              <p style={{ fontSize: '0.92rem', color: 'rgba(255,255,255,0.82)', lineHeight: 1.78 }}>{card.body}</p>
             </article>
           ))}
         </div>
@@ -112,8 +112,8 @@ export default function SystemSection() {
               >
                 {card.num}
               </div>
-              <h3 className="font-display font-medium italic text-white mb-2" style={{ fontSize: 'clamp(1rem, 1.5vw, 1.2rem)' }}>{card.title}</h3>
-              <p className="font-light" style={{ fontSize: '0.86rem', color: 'rgba(255,255,255,0.82)', lineHeight: 1.78 }}>{card.body}</p>
+              <h3 className="font-display font-medium italic text-white mb-2" style={{ fontSize: 'clamp(1.25rem, 1.8vw, 1.5rem)' }}>{card.title}</h3>
+              <p style={{ fontSize: '0.92rem', color: 'rgba(255,255,255,0.82)', lineHeight: 1.78 }}>{card.body}</p>
             </article>
           ))}
         </div>

@@ -61,7 +61,7 @@ export default function ProblemSection() {
             style={{ background: '#2C2C2C', border: '1px solid rgba(255,255,255,0.07)' }}
           >
             <h3
-              className="font-body text-[0.7rem] tracking-[0.18em] uppercase font-medium mb-7"
+              className="font-body text-[0.72rem] tracking-[0.18em] uppercase font-medium mb-7"
               style={{ color: 'rgba(255,255,255,0.5)' }}
             >
               Buyers Struggle With
@@ -75,8 +75,7 @@ export default function ProblemSection() {
                   {s.num}
                 </div>
                 <p
-                  className="font-light"
-                  style={{ fontSize: '0.88rem', color: 'rgba(255,255,255,0.82)', lineHeight: 1.7 }}
+                  style={{ fontSize: '0.92rem', color: 'rgba(255,255,255,0.82)', lineHeight: 1.7 }}
                 >
                   {s.text}
                 </p>
@@ -89,7 +88,7 @@ export default function ProblemSection() {
             style={{ background: '#2C2C2C', border: '1px solid rgba(255,255,255,0.07)' }}
           >
             <h3
-              className="font-body text-[0.7rem] tracking-[0.18em] uppercase font-medium mb-7"
+              className="font-body text-[0.72rem] tracking-[0.18em] uppercase font-medium mb-7"
               style={{ color: 'rgba(255,255,255,0.5)' }}
             >
               Sellers Struggle With
@@ -109,8 +108,7 @@ export default function ProblemSection() {
                     aria-hidden="true"
                   />
                   <p
-                    className="font-light"
-                    style={{ fontSize: '0.88rem', color: 'rgba(255,255,255,0.82)', lineHeight: 1.65 }}
+                    style={{ fontSize: '0.92rem', color: 'rgba(255,255,255,0.82)', lineHeight: 1.65 }}
                   >
                     {p.text}
                   </p>

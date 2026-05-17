@@ -102,7 +102,7 @@ export default function CtaSection() {
             <h2 id="cta-heading" className="font-display font-medium text-white mb-3" style={{ fontSize: 'clamp(2rem, 3.2vw, 3rem)' }}>
               Our first step starts here.
             </h2>
-            <p className="font-light" style={{ fontSize: '0.95rem', color: 'rgba(255,255,255,0.82)', lineHeight: 1.8, maxWidth: 520 }}>
+            <p style={{ fontSize: '1rem', color: 'rgba(255,255,255,0.82)', lineHeight: 1.8, maxWidth: 520 }}>
               If what you've read resonates with the reality your team is working in, schedule a leadership conversation. I work with a limited number of clients at any time to ensure depth over volume.
             </p>
           </div>

@@ -65,7 +65,7 @@ export default function ForSection() {
     >
       <div className="max-w-[1200px] mx-auto px-[5%] py-16">
         <span
-          className="inline-block text-[0.7rem] tracking-[0.18em] uppercase font-medium px-3 py-1 rounded-full mb-5"
+          className="inline-block text-[0.75rem] tracking-[0.18em] uppercase font-medium px-3 py-1 rounded-full mb-5"
           style={{
             color: 'var(--color-red)',
             background: 'var(--color-red-light)',
@@ -82,8 +82,8 @@ export default function ForSection() {
           GTM Systems Building for CROs and VPs of Sales and Solutions Engineering
         </h2>
         <p
-          className="font-light mb-14"
-          style={{ fontSize: '0.95rem', color: 'var(--color-sage)', lineHeight: 1.8, maxWidth: 560 }}
+          className="mb-14"
+          style={{ fontSize: '1rem', color: 'var(--color-sage)', lineHeight: 1.8, maxWidth: 560 }}
         >
           This is not a generic sales training program. It is a structured coaching engagement for GTM leaders who are responsible for the quality of deals, not just a volume of activity.
         </p>
@@ -113,7 +113,7 @@ export default function ForSection() {
             >
               {/* Row 1: tag */}
               <div
-                className="text-[0.68rem] tracking-[0.16em] uppercase font-medium mb-4"
+                className="text-[0.72rem] tracking-[0.16em] uppercase font-medium mb-4"
                 style={{ color: 'var(--color-red)' }}
               >
                 {card.tag}
@@ -134,7 +134,7 @@ export default function ForSection() {
                   return (
                     <li
                       key={j}
-                      className="flex items-start gap-3 px-4 py-3 rounded-sm text-[0.82rem]"
+                      className="flex items-start gap-3 px-4 py-3 rounded-sm text-[0.84rem]"
                       style={{
                         background: 'var(--color-red-light)',
                         border: '1px solid var(--color-red-mid)',
@@ -156,9 +156,9 @@ export default function ForSection() {
 
               {/* Row 4: body */}
               <p
-                className="font-light pt-5"
+                className="pt-5"
                 style={{
-                  fontSize: '0.88rem',
+                  fontSize: '0.92rem',
                   color: 'var(--color-sage)',
                   lineHeight: 1.75,
                   borderTop: '1px solid rgba(26,26,26,0.1)',

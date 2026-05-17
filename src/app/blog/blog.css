@@ -8,7 +8,7 @@
 /* ── Eyebrow pill ─────────────────────────────────────────── */
 .blog-eyebrow {
   display: inline-block;
-  font-size: 0.70rem;
+  font-size: 0.75rem;
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.18em;
@@ -126,7 +126,7 @@
   color: var(--color-sage-mid);
 }
 .blog-featured__excerpt {
-  font-weight: 300; font-size: 0.98rem; line-height: 1.75;
+  font-weight: 400; font-size: 0.98rem; line-height: 1.75;
   color: rgba(255,255,255,0.82);
   max-width: 620px;
   margin-bottom: 1.75rem;
@@ -202,7 +202,7 @@
 }
 .blog-card:hover .blog-card__title { color: var(--color-red); }
 .blog-card__excerpt {
-  font-weight: 300; font-size: 0.9rem; line-height: 1.72;
+  font-weight: 400; font-size: 0.95rem; line-height: 1.72;
   color: var(--color-sage);
   margin-bottom: 1.1rem;
   text-wrap: pretty;
@@ -299,7 +299,7 @@
   color: var(--color-sage-mid);
 }
 .blog-article-hero__lede {
-  font-weight: 300; font-size: 1rem; line-height: 1.85;
+  font-weight: 400; font-size: 1rem; line-height: 1.85;
   color: rgba(255,255,255,0.82);
   max-width: 720px;
 }
@@ -388,7 +388,7 @@
 }
 .blog-toc__link {
   display: flex; gap: 0.65rem; align-items: baseline;
-  font-size: 0.82rem; font-weight: 400;
+  font-size: 0.88rem; font-weight: 400;
   color: var(--color-sage);
   line-height: 1.4;
   padding: 0.15rem 0 0.15rem 0.6rem;
@@ -414,7 +414,7 @@
 
 /* ── Prose ────────────────────────────────────────────────── */
 .blog-prose {
-  font-weight: 300;
+  font-weight: 400;
   font-size: 1.02rem;
   line-height: 1.85;
   color: var(--color-ink);
@@ -423,7 +423,7 @@
 .blog-prose > * + * { margin-top: 1.25rem; }
 .blog-prose p {
   color: rgba(26,26,26,0.82);
-  font-weight: 300; font-size: 1.02rem; line-height: 1.85;
+  font-weight: 400; font-size: 1.02rem; line-height: 1.85;
 }
 .blog-prose h2 {
   font-family: var(--font-display);
@@ -442,7 +442,7 @@
 .blog-prose h3 {
   font-family: var(--font-display);
   font-style: italic; font-weight: 500;
-  font-size: 1.25rem;
+  font-size: 1.4rem;
   color: var(--color-ink);
   margin-top: 2.2rem;
 }
@@ -587,10 +587,10 @@
   color: var(--color-ink); margin-bottom: 0.25rem;
 }
 .blog-author-bio__role {
-  font-size: 0.78rem; color: var(--color-sage); margin-bottom: 1rem;
+  font-size: 0.82rem; color: var(--color-sage); margin-bottom: 1rem;
 }
 .blog-author-bio__body {
-  font-weight: 300; font-size: 0.92rem; line-height: 1.75;
+  font-weight: 400; font-size: 0.95rem; line-height: 1.75;
   color: var(--color-sage); margin-bottom: 1rem;
 }
 .blog-author-bio__links {

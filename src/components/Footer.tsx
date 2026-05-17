@@ -40,7 +40,7 @@ export default function Footer() {
               />
               <span className="font-display text-xl italic text-white">GTM Solutions Consulting</span>
             </Link>
-            <p className="font-light" style={{ fontSize: '0.88rem', color: 'rgba(255,255,255,0.5)', lineHeight: 1.7, maxWidth: 220 }}>
+            <p style={{ fontSize: '0.92rem', color: 'rgba(255,255,255,0.5)', lineHeight: 1.7, maxWidth: 220 }}>
               Helping B2B SaaS teams build decision confidence in their buyers.
             </p>
             <a
@@ -61,21 +61,21 @@ export default function Footer() {
 
           {/* Services column */}
           <div>
-            <h3 className="font-body font-medium mb-5" style={{ fontSize: '0.68rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.55)' }}>
+            <h3 className="font-body font-medium mb-5" style={{ fontSize: "0.72rem", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(255,255,255,0.55)" }}>
               Services
             </h3>
             <ul className="flex flex-col gap-3">
               {services.map(s => (
                 <li key={s.label}>
                   {s.active ? (
-                    <Link href={s.href} className="font-light transition-colors" style={{ fontSize: '0.88rem', color: 'rgba(255,255,255,0.6)' }}
+                    <Link href={s.href} className="transition-colors" style={{ fontSize: '0.92rem', color: 'rgba(255,255,255,0.6)' }}
                       onMouseEnter={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.9)')}
                       onMouseLeave={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.6)')}
                     >
                       {s.label}
                     </Link>
                   ) : (
-                    <span className="font-light cursor-default" style={{ fontSize: '0.88rem', color: 'rgba(255,255,255,0.6)' }}>
+                    <span className="cursor-default" style={{ fontSize: '0.92rem', color: 'rgba(255,255,255,0.6)' }}>
                       {s.label}
                     </span>
                   )}
@@ -86,13 +86,13 @@ export default function Footer() {
 
           {/* Resources column */}
           <div>
-            <h3 className="font-body font-medium mb-5" style={{ fontSize: '0.68rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.55)' }}>
+            <h3 className="font-body font-medium mb-5" style={{ fontSize: "0.72rem", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(255,255,255,0.55)" }}>
               Resources
             </h3>
             <ul className="flex flex-col gap-3">
               {company.map(c => (
                 <li key={c.label}>
-                  <Link href={c.href} className="font-light transition-colors" style={{ fontSize: '0.88rem', color: 'rgba(255,255,255,0.6)' }}
+                  <Link href={c.href} className="transition-colors" style={{ fontSize: '0.92rem', color: 'rgba(255,255,255,0.6)' }}
                     onMouseEnter={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.9)')}
                     onMouseLeave={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.6)')}
                   >
@@ -105,7 +105,7 @@ export default function Footer() {
 
           {/* Get in touch column */}
           <div>
-            <h3 className="font-body font-medium mb-5" style={{ fontSize: '0.68rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.55)' }}>
+            <h3 className="font-body font-medium mb-5" style={{ fontSize: "0.72rem", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(255,255,255,0.55)" }}>
               Get in Touch
             </h3>
             <ul className="flex flex-col gap-3">
@@ -116,15 +116,15 @@ export default function Footer() {
                       href={c.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="font-light transition-colors"
-                      style={{ fontSize: '0.88rem', color: 'rgba(255,255,255,0.6)' }}
+                      className="transition-colors"
+                      style={{ fontSize: '0.92rem', color: 'rgba(255,255,255,0.6)' }}
                       onMouseEnter={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.9)')}
                       onMouseLeave={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.6)')}
                     >
                       {c.label}
                     </a>
                   ) : (
-                    <Link href={c.href} className="font-light transition-colors" style={{ fontSize: '0.88rem', color: 'rgba(255,255,255,0.6)' }}
+                    <Link href={c.href} className="transition-colors" style={{ fontSize: '0.92rem', color: 'rgba(255,255,255,0.6)' }}
                       onMouseEnter={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.9)')}
                       onMouseLeave={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.6)')}
                     >
@@ -139,17 +139,17 @@ export default function Footer() {
 
         {/* Bottom bar */}
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 pt-8">
-          <p className="font-light" style={{ fontSize: '0.78rem', color: 'rgba(255,255,255,0.6)' }}>
+          <p style={{ fontSize: '0.82rem', color: 'rgba(255,255,255,0.6)' }}>
             GTM Solutions Consulting &copy; {new Date().getFullYear()}
           </p>
           <div className="flex gap-6">
-            <Link href="/impressum" className="font-light transition-colors" style={{ fontSize: '0.78rem', color: 'rgba(255,255,255,0.6)', letterSpacing: '0.1em', textTransform: 'uppercase' }}
+            <Link href="/impressum" className="transition-colors" style={{ fontSize: '0.78rem', color: 'rgba(255,255,255,0.6)', letterSpacing: '0.1em', textTransform: 'uppercase' }}
               onMouseEnter={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.5)')}
               onMouseLeave={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.6)')}
             >
               Impressum
             </Link>
-            <Link href="/privacy" className="font-light transition-colors" style={{ fontSize: '0.78rem', color: 'rgba(255,255,255,0.6)', letterSpacing: '0.1em', textTransform: 'uppercase' }}
+            <Link href="/privacy" className="transition-colors" style={{ fontSize: '0.78rem', color: 'rgba(255,255,255,0.6)', letterSpacing: '0.1em', textTransform: 'uppercase' }}
               onMouseEnter={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.5)')}
               onMouseLeave={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.6)')}
             >

@@ -24,7 +24,7 @@ export default function HeroSection() {
         {/* Left: content */}
         <div className="fade-up-children flex flex-col">
           <p
-            className="inline-flex items-center gap-2 self-start px-3 py-1 rounded-full text-[0.7rem] tracking-[0.18em] uppercase font-medium mb-7"
+            className="inline-flex items-center gap-2 self-start px-3 py-1 rounded-full text-[0.75rem] tracking-[0.18em] uppercase font-medium mb-7"
             style={{
               color: 'rgba(255,255,255,0.9)',
               background: 'rgba(255,255,255,0.1)',
@@ -45,7 +45,7 @@ export default function HeroSection() {
           </h1>
 
           <p
-            className="mb-4 font-light"
+            className="mb-4"
             style={{
               fontSize: '1rem',
               color: 'rgba(255,255,255,0.82)',
@@ -56,7 +56,7 @@ export default function HeroSection() {
             Most B2B SaaS teams don't lose deals because of product gaps. They lose because buyers cannot confidently justify a decision.
           </p>
           <p
-            className="mb-11 font-light"
+            className="mb-11"
             style={{
               fontSize: '1rem',
               color: 'rgba(255,255,255,0.82)',

@@ -67,15 +67,15 @@ export default function TestimonialsSection() {
             >
               <div
                 className="font-display font-semibold italic relative pl-4"
-                style={{ fontSize: 'clamp(1rem, 1.5vw, 1.2rem)', color: 'var(--color-ink)', lineHeight: 1.38 }}
+                style={{ fontSize: 'clamp(1.1rem, 1.5vw, 1.3rem)', color: 'var(--color-ink)', lineHeight: 1.38 }}
               >
                 <span className="absolute left-0 top-[-4px] not-italic font-normal" style={{ color: 'var(--color-red)', fontSize: '2rem', lineHeight: 1 }} aria-hidden="true">&#8220;</span>
                 {t.pullquote}
               </div>
-              <p className="font-light flex-1" style={{ fontSize: '0.84rem', color: 'var(--color-sage)', lineHeight: 1.78 }}>{t.body}</p>
+              <p className="flex-1" style={{ fontSize: '0.92rem', color: 'var(--color-sage)', lineHeight: 1.78 }}>{t.body}</p>
               <div className="pt-4" style={{ borderTop: '1px solid rgba(26,26,26,0.1)' }}>
-                <strong className="block font-medium" style={{ fontSize: '0.86rem', color: 'var(--color-ink)' }}>{t.name}</strong>
-                <span className="font-light" style={{ fontSize: '0.78rem', color: 'var(--color-sage)' }}>{t.role} &mdash; {t.company}</span>
+                <strong className="block font-medium" style={{ fontSize: '0.88rem', color: 'var(--color-ink)' }}>{t.name}</strong>
+                <span style={{ fontSize: '0.82rem', color: 'var(--color-sage)' }}>{t.role} &mdash; {t.company}</span>
               </div>
             </article>
           ))}
