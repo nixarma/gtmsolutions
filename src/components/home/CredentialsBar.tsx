@@ -31,8 +31,7 @@ export default function CredentialsBar() {
               <span style={{ color: 'var(--color-red)' }}>{c.num}</span>
             </div>
             <div
-              className="font-light"
-              style={{ fontSize: '0.78rem', color: 'var(--color-sage)', lineHeight: 1.5 }}
+              style={{ fontSize: '0.82rem', color: 'var(--color-sage)', lineHeight: 1.5 }}
             >
               {c.label}
             </div>

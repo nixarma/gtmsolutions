@@ -25,7 +25,7 @@ export default function ProblemSection() {
     >
       <div className="max-w-[1200px] mx-auto px-[5%] py-16">
         <span
-          className="inline-block text-[0.7rem] tracking-[0.18em] uppercase font-medium px-3 py-1 rounded-full mb-5"
+          className="inline-block text-[0.75rem] tracking-[0.18em] uppercase font-medium px-3 py-1 rounded-full mb-5"
           style={{
             color: 'rgba(255,255,255,0.9)',
             background: 'rgba(255,255,255,0.1)',

@@ -30,7 +30,7 @@ export default function LogosSection() {
       aria-label="Client companies"
     >
       <div className="max-w-[1200px] mx-auto px-[5%] py-11">
-        <p className="text-center uppercase tracking-[0.2em] font-medium mb-10" style={{ fontSize: '0.68rem', color: 'var(--color-sage)', opacity: 0.55 }}>
+        <p className="text-center uppercase tracking-[0.2em] font-medium mb-10" style={{ fontSize: '0.72rem', color: 'var(--color-sage)', opacity: 0.55 }}>
           Teams I have worked with
         </p>
         <div className="flex flex-wrap items-center justify-center gap-x-14 gap-y-8">

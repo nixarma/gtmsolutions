@@ -58,8 +58,8 @@ export default function SystemSection() {
           GTM Coaching Services: Value Discovery and Demonstration, Storytelling, and Business Acumen
         </h2>
         <p
-          className="font-light mb-14"
-          style={{ fontSize: '0.95rem', color: 'rgba(255,255,255,0.82)', maxWidth: 560, lineHeight: 1.8 }}
+          className="mb-14"
+          style={{ fontSize: '1rem', color: 'rgba(255,255,255,0.82)', maxWidth: 560, lineHeight: 1.8 }}
         >
           Coaching that addresses modules and teams in isolation produces one-off improvements. What moves revenue is a shared operating model across discovery, storytelling, demos, and negotiation.
         </p>

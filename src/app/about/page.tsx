@@ -63,17 +63,17 @@ export default function AboutPage() {
         <div className="pointer-events-none absolute bottom-[-80px] right-[-80px] w-[480px] h-[480px] rounded-full" style={{ background: 'radial-gradient(circle, rgba(153,51,47,0.07) 0%, transparent 68%)' }} aria-hidden="true" />
         <div className="max-w-[1200px] mx-auto px-[5%] py-16 grid grid-cols-1 md:grid-cols-[1.1fr_0.9fr] items-center gap-16 relative z-10">
           <div className="fade-up-children flex flex-col">
-            <span className="inline-block self-start px-3 py-1 rounded-full text-[0.7rem] tracking-[0.18em] uppercase font-medium mb-6" style={{ color: 'rgba(255,255,255,0.9)', background: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.15)' }}>
+            <span className="inline-block self-start px-3 py-1 rounded-full text-[0.75rem] tracking-[0.18em] uppercase font-medium mb-6" style={{ color: 'rgba(255,255,255,0.9)', background: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.15)' }}>
               Hi, I'm Nikhil
             </span>
             <h1 className="font-display font-medium italic text-white mb-6" style={{ fontSize: 'clamp(2.4rem, 3.8vw, 3.6rem)', lineHeight: 1.12 }}>
               <em className="not-italic" style={{ color: 'var(--color-sage-mid)' }}>I have walked in<br />your team's shoes.</em>
             </h1>
-            <p className="font-light mb-2" style={{ fontSize: '1rem', color: 'rgba(255,255,255,0.82)', lineHeight: 1.85, maxWidth: 520 }}>
+            <p className="mb-2" style={{ fontSize: '1rem', color: 'rgba(255,255,255,0.82)', lineHeight: 1.85, maxWidth: 520 }}>
               As an individual contributor and as a first-line Solutions Engineering and Sales Manager, I faced the same patterns your teams face today.
             </p>
-            <p className="font-light mb-2" style={{ fontSize: '1rem', color: 'rgba(255,255,255,0.82)', lineHeight: 1.85 }}>Strong products. Smart people.</p>
-            <p className="font-light mb-9" style={{ fontSize: '1rem', color: 'rgba(255,255,255,0.82)', lineHeight: 1.85 }}>Inconsistent execution and fragile forecasts.</p>
+            <p className="mb-2" style={{ fontSize: '1rem', color: 'rgba(255,255,255,0.82)', lineHeight: 1.85 }}>Strong products. Smart people.</p>
+            <p className="mb-9" style={{ fontSize: '1rem', color: 'rgba(255,255,255,0.82)', lineHeight: 1.85 }}>Inconsistent execution and fragile forecasts.</p>
             <Link href="#contact" className="self-start inline-block font-body text-xs tracking-[0.1em] uppercase font-medium px-8 py-3 rounded-sm transition-colors" style={{ background: 'var(--color-red)', color: '#fff' }}>
               Schedule a Strategy Session
             </Link>
@@ -90,7 +90,7 @@ export default function AboutPage() {
       {/* Background — white */}
       <section style={{ background: 'var(--color-white)' }} aria-labelledby="background-heading">
         <div className="max-w-[1200px] mx-auto px-[5%] py-16">
-          <span className="inline-block text-[0.7rem] tracking-[0.18em] uppercase font-medium px-3 py-1 rounded-full mb-5" style={{ color: 'var(--color-red)', background: 'var(--color-red-light)', border: '1px solid var(--color-red-mid)' }}>
+          <span className="inline-block text-[0.75rem] tracking-[0.18em] uppercase font-medium px-3 py-1 rounded-full mb-5" style={{ color: 'var(--color-red)', background: 'var(--color-red-light)', border: '1px solid var(--color-red-mid)' }}>
             Background
           </span>
           <h2 id="background-heading" className="font-display font-medium mb-6" style={{ fontSize: 'clamp(1.8rem, 2.8vw, 2.6rem)', color: 'var(--color-ink)', maxWidth: 640 }}>
@@ -98,18 +98,18 @@ export default function AboutPage() {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-14">
             <div>
-              <p className="font-light mb-4" style={{ fontSize: '0.95rem', color: 'var(--color-sage)', lineHeight: 1.85 }}>
+              <p className="mb-4" style={{ fontSize: '1rem', color: 'var(--color-sage)', lineHeight: 1.85 }}>
                 At companies like <strong style={{ color: 'var(--color-ink)', fontWeight: 500 }}>Dolby, Optimizely, Lofelt, and Contentful</strong> — across large enterprises and fast-growing startups — my teams faced a familiar pattern. Not because we lacked effort or training, but because we lacked a coherent system for discovering value and guiding decisions.
               </p>
-              <p className="font-light" style={{ fontSize: '0.95rem', color: 'var(--color-sage)', lineHeight: 1.85 }}>
+              <p className="" style={{ fontSize: '1rem', color: 'var(--color-sage)', lineHeight: 1.85 }}>
                 To overcome this, I systematically adopted, developed, and refined the frameworks and practices I now teach. They were built inside active sales opportunities, under real commercial pressure — not in a classroom or a consultant's model.
               </p>
             </div>
             <div>
-              <p className="font-light mb-4" style={{ fontSize: '0.95rem', color: 'var(--color-sage)', lineHeight: 1.85 }}>
+              <p className="mb-4" style={{ fontSize: '1rem', color: 'var(--color-sage)', lineHeight: 1.85 }}>
                 Over time, this system helped teams I worked with contribute to more than <strong style={{ color: 'var(--color-ink)', fontWeight: 500 }}>$60M in software revenue</strong> across EMEA and Asia, while improving deal qualification, execution discipline, and forecast reliability.
               </p>
-              <p className="font-light" style={{ fontSize: '0.95rem', color: 'var(--color-sage)', lineHeight: 1.85 }}>
+              <p className="" style={{ fontSize: '1rem', color: 'var(--color-sage)', lineHeight: 1.85 }}>
                 I have lived and worked across Asia, North America, and Europe. That experience shapes how I think about selling across cultures, stakeholders, and decision norms.
               </p>
             </div>
@@ -126,13 +126,13 @@ export default function AboutPage() {
               </blockquote>
             </div>
             <div>
-              <p className="font-light mb-4" style={{ fontSize: '0.92rem', color: 'var(--color-sage)', lineHeight: 1.85 }}>
+              <p className="mb-4" style={{ fontSize: '0.95rem', color: 'var(--color-sage)', lineHeight: 1.85 }}>
                 I spent years watching the same problems recur across different companies, different teams, different geographies. Effort was never the issue. A coherent, shared operating model was.
               </p>
-              <p className="font-light mb-4" style={{ fontSize: '0.92rem', color: 'var(--color-sage)', lineHeight: 1.85 }}>
+              <p className="mb-4" style={{ fontSize: '0.95rem', color: 'var(--color-sage)', lineHeight: 1.85 }}>
                 Today, I partner with <strong style={{ color: 'var(--color-ink)', fontWeight: 500 }}>CROs and senior GTM leaders</strong> who want to move beyond isolated training and toward a repeatable, buyer-centric system — one that improves not just individual skill, but the coherence of the entire GTM motion.
               </p>
-              <p className="font-light" style={{ fontSize: '0.92rem', color: 'var(--color-sage)', lineHeight: 1.85 }}>
+              <p className="" style={{ fontSize: '0.95rem', color: 'var(--color-sage)', lineHeight: 1.85 }}>
                 That shift from practitioner to coach was not a departure from the work. It was the next logical step in it.
               </p>
             </div>
@@ -143,7 +143,7 @@ export default function AboutPage() {
       {/* Approach — linen */}
       <section style={{ background: 'var(--color-linen)' }} aria-labelledby="approach-heading">
         <div className="max-w-[1200px] mx-auto px-[5%] py-16">
-          <span className="inline-block text-[0.7rem] tracking-[0.18em] uppercase font-medium px-3 py-1 rounded-full mb-5" style={{ color: 'var(--color-red)', background: 'var(--color-red-light)', border: '1px solid var(--color-red-mid)' }}>
+          <span className="inline-block text-[0.75rem] tracking-[0.18em] uppercase font-medium px-3 py-1 rounded-full mb-5" style={{ color: 'var(--color-red)', background: 'var(--color-red-light)', border: '1px solid var(--color-red-mid)' }}>
             How I Work
           </span>
           <h2 id="approach-heading" className="font-display font-medium mb-12" style={{ fontSize: 'clamp(1.8rem, 2.8vw, 2.6rem)', color: 'var(--color-ink)', maxWidth: 560 }}>
@@ -154,7 +154,7 @@ export default function AboutPage() {
               <div key={i} className="p-8 rounded-sm" style={{ background: 'var(--color-white)', border: '1px solid rgba(26,26,26,0.1)' }}>
                 <div className="font-display font-semibold mb-4" style={{ fontSize: 'clamp(1.4rem, 2vw, 2rem)', color: 'var(--color-red)', opacity: 0.4, lineHeight: 1 }}>{c.num}</div>
                 <h3 className="font-display font-medium italic mb-2" style={{ fontSize: '1.15rem', color: 'var(--color-ink)' }}>{c.title}</h3>
-                <p className="font-light" style={{ fontSize: '0.86rem', color: 'var(--color-sage)', lineHeight: 1.75 }}>{c.body}</p>
+                <p className="" style={{ fontSize: '0.92rem', color: 'var(--color-sage)', lineHeight: 1.75 }}>{c.body}</p>
               </div>
             ))}
           </div>
@@ -164,7 +164,7 @@ export default function AboutPage() {
       {/* Perspective — ink */}
       <section style={{ background: 'var(--color-ink)' }} aria-labelledby="perspective-heading">
         <div className="max-w-[1200px] mx-auto px-[5%] py-16">
-          <span className="inline-block text-[0.7rem] tracking-[0.18em] uppercase font-medium px-3 py-1 rounded-full mb-5" style={{ color: 'rgba(255,255,255,0.9)', background: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.15)' }}>
+          <span className="inline-block text-[0.75rem] tracking-[0.18em] uppercase font-medium px-3 py-1 rounded-full mb-5" style={{ color: 'rgba(255,255,255,0.9)', background: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.15)' }}>
             My Point of View
           </span>
           <h2 id="perspective-heading" className="font-display font-medium text-white mb-12" style={{ fontSize: 'clamp(1.8rem, 2.8vw, 2.6rem)', maxWidth: 560 }}>
@@ -185,7 +185,7 @@ export default function AboutPage() {
                 <blockquote className="font-display italic text-white mb-3 pl-4" style={{ fontSize: 'clamp(1rem, 1.5vw, 1.2rem)', lineHeight: 1.45, borderLeft: '2px solid var(--color-red-ondark)' }}>
                   {p.quote}
                 </blockquote>
-                <p className="font-light" style={{ fontSize: '0.86rem', color: 'rgba(255,255,255,0.6)', lineHeight: 1.72 }}>{p.body}</p>
+                <p className="" style={{ fontSize: '0.92rem', color: 'rgba(255,255,255,0.6)', lineHeight: 1.72 }}>{p.body}</p>
               </HoverCard>
             ))}
           </div>
@@ -211,10 +211,10 @@ export default function AboutPage() {
                   <span className="absolute left-0 top-[-4px] not-italic font-normal" style={{ color: 'var(--color-red)', fontSize: '1.8rem', lineHeight: 1 }} aria-hidden="true">&#8220;</span>
                   {t.pullquote}
                 </div>
-                <p className="font-light flex-1" style={{ fontSize: '0.84rem', color: 'var(--color-sage)', lineHeight: 1.78 }}>{t.body}</p>
+                <p className="flex-1" style={{ fontSize: '0.92rem', color: 'var(--color-sage)', lineHeight: 1.78 }}>{t.body}</p>
                 <div className="pt-4" style={{ borderTop: '1px solid rgba(26,26,26,0.1)' }}>
-                  <strong className="block font-medium" style={{ fontSize: '0.86rem', color: 'var(--color-ink)' }}>{t.name}</strong>
-                  <span className="font-light" style={{ fontSize: '0.78rem', color: 'var(--color-sage)' }}>{t.role} &mdash; {t.company}</span>
+                  <strong className="block font-medium" style={{ fontSize: '0.88rem', color: 'var(--color-ink)' }}>{t.name}</strong>
+                  <span className="" style={{ fontSize: '0.82rem', color: 'var(--color-sage)' }}>{t.role} &mdash; {t.company}</span>
                 </div>
               </HoverCard>
             ))}
