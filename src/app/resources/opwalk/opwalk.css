@@ -820,3 +820,17 @@
 .cta p {
   color: rgba(26, 26, 26, 0.72);
 }
+
+/* ── Contrast fix pass 2 — selectors missed in pass 1 ──────
+   All values below are sage (#6C786A) or similar on white/linen.
+   Replaced with rgba(26,26,26,0.72) = ~#6B6B6B = 5.9:1 on white,
+   which passes WCAG AA (4.5:1 required).                    */
+.stepper-label,
+.stepper .step,
+.three-col-card p,
+.score-head .meta,
+.section.practices .practice p,
+.testi--linen .testi-role,
+.section.post .tl-step p {
+  color: rgba(26, 26, 26, 0.72);
+}
