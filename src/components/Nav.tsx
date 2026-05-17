@@ -204,6 +204,7 @@ export default function Nav() {
       <div
         className="mobile-menu-overlay"
         aria-hidden={!open}
+        {...(!open ? { inert: '' } : {})}
         style={{
           position: 'fixed',
           inset: 0,
