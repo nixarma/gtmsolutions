@@ -64,3 +64,29 @@ html {
   from { opacity: 0; transform: translateY(24px); }
   to   { opacity: 1; transform: translateY(0); }
 }
+
+/* ── Add these rules to the bottom of globals.css ── */
+
+/* Mobile bottom bar and overlay — hidden on desktop.
+   md:hidden fails on position:fixed elements in Tailwind v4,
+   so we use explicit media queries instead. */
+   .mobile-bottom-bar,
+   .mobile-menu-overlay {
+     display: none;
+   }
+   
+   @media (max-width: 767px) {
+     .mobile-bottom-bar {
+       display: flex;
+     }
+     .mobile-menu-overlay {
+       display: flex;
+     }
+   }
+   
+   /* Prevent page content being hidden behind the bottom bar on mobile */
+   @media (max-width: 767px) {
+     main {
+       padding-bottom: calc(56px + env(safe-area-inset-bottom));
+     }
+   }
