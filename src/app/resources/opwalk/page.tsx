@@ -215,17 +215,17 @@ type TestimonialData = {
 
 const TESTIMONIALS: Record<'midPhases' | 'midPractices' | 'preCta', TestimonialData> = {
   midPhases: {
-    quote: 'This is such a consultative approach. When you run discovery this way, prospects feel it \u2014 they open up in a way they don\u2019t in a standard qualification call. Our team has made this the default now.',
+    quote: 'This is such a consultative approach, and our prospects love it! They open up in a way they don\u2019t in a typical discovery call. This is my go-to approach before validation demos now.',
     name: 'Senior Sales Engineer', role: 'Enterprise SaaS', company: '',
     initials: 'SE', variant: 'default',
   },
   midPractices: {
-    quote: 'This is such a consultative approach. When you run discovery this way, prospects feel it \u2014 they open up in a way they don\u2019t in a standard qualification call. Our team has made this the default now.',
-    name: 'Senior Sales Engineer', role: 'Enterprise SaaS', company: '',
+    quote: 'When you walk their workflow with them [your prospects], they start connecting dots themselves. I\u2019ve had prospects hand me 80% of the business case before my SE and I demoed to their team.',
+    name: 'Enterprise AE', role: 'Enterprise SaaS', company: '',
     initials: 'SE', variant: 'linen',
   },
   preCta: {
-    quote: 'We ran an Operational Walkthrough with a prospect and identified exactly where they were losing time. By the end of the call we were already in a financial conversation \u2014 no demo, no feature pitch. The deal moved faster than anything else in our pipeline that quarter.',
+    quote: 'We ran an Operational Walkthrough with a prospect and identified exactly where they were losing time. By the end of the call we were already in a financial conversation. No demo, no pitch. The deal moved faster than anything else in our pipeline that quarter!',
     name: 'Senior Sales Engineer', role: 'Enterprise SaaS', company: '',
     initials: 'SE', variant: 'ink',
   },
@@ -402,6 +402,243 @@ export default function OpwalkPage() {
         </div>
       </section>
 
+      {/* ── OpWalk difference diagram ────────────────────────── */}
+      <section className="diff-section">
+        <div className="diff-inner">
+          <div className="diff-head">
+            <span className="diff-eyebrow">The OpWalk difference</span>
+            <h2 className="diff-h2">Demo what moves the needle. <em>Skip what doesn&apos;t.</em></h2>
+            <p className="diff-caveat">Your prospect&apos;s workflow will look different. The principle is the same.</p>
+          </div>
+          <div className="diff-diagram-wrap">
+
+            {/* ── DESKTOP SVG ── */}
+            <svg className="diff-svg diff-svg--desktop" viewBox="-10 80 1040 320"
+              xmlns="http://www.w3.org/2000/svg" aria-label="Process flow diagram">
+              <defs>
+                <marker id="arr-d" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                  <path d="M0,0 L0,6 L9,3 z" fill="#474747" />
+                </marker>
+                <filter id="glow-d" x="-60%" y="-60%" width="220%" height="220%">
+                  <feGaussianBlur stdDeviation="7" result="blur"/>
+                  <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                </filter>
+              </defs>
+
+              {/* CONNECTORS */}
+              {/* 01→02 */}
+              <line stroke="#474747" strokeWidth="1.5"
+                x1="150" y1="240" x2="167" y2="240" markerEnd="url(#arr-d)" />
+              {/* 02 top → elbow right → 03 left */}
+              <path fill="none" stroke="#474747" strokeWidth="1.5"
+                d="M244,208 L244,148 Q244,125 269,125 L329,125" markerEnd="url(#arr-d)" />
+              {/* 02 bottom → elbow right → 04 left */}
+              <path fill="none" stroke="#474747" strokeWidth="1.5"
+                d="M244,272 L244,332 Q244,355 269,355 L329,355" markerEnd="url(#arr-d)" />
+              {/* 03 right → elbow down → 05 top */}
+              <path fill="none" stroke="#474747" strokeWidth="1.5"
+                d="M484,125 L565,125 Q590,125 590,150 L590,201" markerEnd="url(#arr-d)" />
+              {/* 04 right → elbow up → 05 bottom */}
+              <path fill="none" stroke="#474747" strokeWidth="1.5"
+                d="M484,355 L565,355 Q590,355 590,330 L590,279" markerEnd="url(#arr-d)" />
+              {/* 05→06 */}
+              <line stroke="#474747" strokeWidth="1.5"
+                x1="660" y1="240" x2="679" y2="240" markerEnd="url(#arr-d)" />
+              {/* 06→07 */}
+              <line stroke="#474747" strokeWidth="1.5"
+                x1="834" y1="240" x2="853" y2="240" markerEnd="url(#arr-d)" />
+
+              {/* NODES */}
+              {/* 01 Intake / triage */}
+              <g>
+                <rect x="10" y="208" width="140" height="64" rx="12"
+                  fill="#1e1e1e" stroke="rgba(0,0,0,0)" strokeWidth="1.5"/>
+                <text x="80" y="232" textAnchor="middle" fontFamily="DM Sans,sans-serif"
+                  fontSize="11" fontWeight="600" fill="rgba(255,255,255,0.35)" letterSpacing="0.08em">01</text>
+                <text x="80" y="252" textAnchor="middle" fontFamily="DM Sans,sans-serif"
+                  fontSize="14" fill="rgba(255,255,255,0.72)">Intake / triage</text>
+              </g>
+              {/* 02 Assign / investigate */}
+              <g>
+                <rect x="174" y="208" width="140" height="64" rx="12"
+                  fill="#1e1e1e" stroke="rgba(0,0,0,0)" strokeWidth="1.5"/>
+                <text x="244" y="232" textAnchor="middle" fontFamily="DM Sans,sans-serif"
+                  fontSize="11" fontWeight="600" fill="rgba(255,255,255,0.35)" letterSpacing="0.08em">02</text>
+                <text x="244" y="252" textAnchor="middle" fontFamily="DM Sans,sans-serif"
+                  fontSize="14" fill="rgba(255,255,255,0.72)">Assign / investigate</text>
+              </g>
+              {/* 03 Escalate — red */}
+              <g filter="url(#glow-d)">
+                <rect x="336" y="93" width="148" height="64" rx="12"
+                  fill="#6B1614" stroke="#99332F" strokeWidth="2"/>
+                <text x="410" y="117" textAnchor="middle" fontFamily="DM Sans,sans-serif"
+                  fontSize="11" fontWeight="600" fill="rgba(255,255,255,0.6)" letterSpacing="0.08em">03</text>
+                <text x="410" y="137" textAnchor="middle" fontFamily="DM Sans,sans-serif"
+                  fontSize="15" fontWeight="600" fill="#FFFFFF">Escalate</text>
+              </g>
+              {/* 04 Enrich — red */}
+              <g filter="url(#glow-d)">
+                <rect x="336" y="323" width="148" height="64" rx="12"
+                  fill="#6B1614" stroke="#99332F" strokeWidth="2"/>
+                <text x="410" y="347" textAnchor="middle" fontFamily="DM Sans,sans-serif"
+                  fontSize="11" fontWeight="600" fill="rgba(255,255,255,0.6)" letterSpacing="0.08em">04</text>
+                <text x="410" y="367" textAnchor="middle" fontFamily="DM Sans,sans-serif"
+                  fontSize="15" fontWeight="600" fill="#FFFFFF">Enrich</text>
+              </g>
+              {/* 05 Validate */}
+              <g>
+                <rect x="520" y="208" width="140" height="64" rx="12"
+                  fill="#1e1e1e" stroke="rgba(0,0,0,0)" strokeWidth="1.5"/>
+                <text x="590" y="232" textAnchor="middle" fontFamily="DM Sans,sans-serif"
+                  fontSize="11" fontWeight="600" fill="rgba(255,255,255,0.35)" letterSpacing="0.08em">05</text>
+                <text x="590" y="252" textAnchor="middle" fontFamily="DM Sans,sans-serif"
+                  fontSize="14" fill="rgba(255,255,255,0.72)">Validate</text>
+              </g>
+              {/* 06 Resolve — red */}
+              <g filter="url(#glow-d)">
+                <rect x="686" y="208" width="148" height="64" rx="12"
+                  fill="#6B1614" stroke="#99332F" strokeWidth="2"/>
+                <text x="760" y="232" textAnchor="middle" fontFamily="DM Sans,sans-serif"
+                  fontSize="11" fontWeight="600" fill="rgba(255,255,255,0.6)" letterSpacing="0.08em">06</text>
+                <text x="760" y="252" textAnchor="middle" fontFamily="DM Sans,sans-serif"
+                  fontSize="15" fontWeight="600" fill="#FFFFFF">Resolve</text>
+              </g>
+              {/* 07 Document / Close */}
+              <g>
+                <rect x="860" y="208" width="140" height="64" rx="12"
+                  fill="#1e1e1e" stroke="rgba(0,0,0,0)" strokeWidth="1.5"/>
+                <text x="930" y="232" textAnchor="middle" fontFamily="DM Sans,sans-serif"
+                  fontSize="11" fontWeight="600" fill="rgba(255,255,255,0.35)" letterSpacing="0.08em">07</text>
+                <text x="930" y="252" textAnchor="middle" fontFamily="DM Sans,sans-serif"
+                  fontSize="14" fill="rgba(255,255,255,0.72)">Document / Close</text>
+              </g>
+            </svg>
+
+            {/* ── MOBILE SVG ── */}
+            <svg className="diff-svg diff-svg--mobile" viewBox="0 10 410 448"
+              xmlns="http://www.w3.org/2000/svg" aria-label="Process flow diagram">
+              <defs>
+                <marker id="arr-m" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                  <path d="M0,0 L0,6 L9,3 z" fill="#474747" />
+                </marker>
+                <filter id="glow-m" x="-60%" y="-60%" width="220%" height="220%">
+                  <feGaussianBlur stdDeviation="6" result="blur"/>
+                  <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                </filter>
+              </defs>
+
+              {/* CONNECTORS */}
+              {/* 01→02 */}
+              <line stroke="#474747" strokeWidth="1.5"
+                x1="192" y1="64" x2="192" y2="93" markerEnd="url(#arr-m)" />
+              {/* 02 → 03 elbow left */}
+              <path fill="none" stroke="#474747" strokeWidth="1.5"
+                d="M192,143 L192,169 Q192,192 124,192" markerEnd="url(#arr-m)" />
+              {/* 02 → 04 elbow right */}
+              <path fill="none" stroke="#474747" strokeWidth="1.5"
+                d="M192,143 L192,169 Q192,192 252,192" markerEnd="url(#arr-m)" />
+              {/* 03 → 05 elbow right */}
+              <path fill="none" stroke="#474747" strokeWidth="1.5"
+                d="M79,213 L79,247 Q79,269 141,269" markerEnd="url(#arr-m)" />
+              {/* 04 → 05 elbow left */}
+              <path fill="none" stroke="#474747" strokeWidth="1.5"
+                d="M304,213 L304,247 Q304,269 244,269" markerEnd="url(#arr-m)" />
+              {/* 05→06 */}
+              <line stroke="#474747" strokeWidth="1.5"
+                x1="192" y1="290" x2="192" y2="320" markerEnd="url(#arr-m)" />
+              {/* 06→07 */}
+              <line stroke="#474747" strokeWidth="1.5"
+                x1="192" y1="369" x2="192" y2="399" markerEnd="url(#arr-m)" />
+
+              {/* NODES */}
+              {/* 01 Intake / triage */}
+              <g>
+                <rect x="104" y="22" width="176" height="42" rx="9"
+                  fill="#1e1e1e" stroke="rgba(0,0,0,0)" strokeWidth="1.5"/>
+                <text x="192" y="38" textAnchor="middle" fontFamily="DM Sans,sans-serif"
+                  fontSize="10" fontWeight="600" fill="rgba(255,255,255,0.35)" letterSpacing="0.08em">01</text>
+                <text x="192" y="53" textAnchor="middle" fontFamily="DM Sans,sans-serif"
+                  fontSize="13" fill="rgba(255,255,255,0.72)">Intake / triage</text>
+              </g>
+              {/* 02 Assign / investigate */}
+              <g>
+                <rect x="104" y="101" width="176" height="42" rx="9"
+                  fill="#1e1e1e" stroke="rgba(0,0,0,0)" strokeWidth="1.5"/>
+                <text x="192" y="117" textAnchor="middle" fontFamily="DM Sans,sans-serif"
+                  fontSize="10" fontWeight="600" fill="rgba(255,255,255,0.35)" letterSpacing="0.08em">02</text>
+                <text x="192" y="132" textAnchor="middle" fontFamily="DM Sans,sans-serif"
+                  fontSize="13" fill="rgba(255,255,255,0.72)">Assign / investigate</text>
+              </g>
+              {/* 03 Escalate — red */}
+              <g filter="url(#glow-m)">
+                <rect x="11" y="171" width="136" height="42" rx="9"
+                  fill="#6B1614" stroke="#99332F" strokeWidth="2"/>
+                <text x="79" y="187" textAnchor="middle" fontFamily="DM Sans,sans-serif"
+                  fontSize="10" fontWeight="600" fill="rgba(255,255,255,0.6)" letterSpacing="0.08em">03</text>
+                <text x="79" y="202" textAnchor="middle" fontFamily="DM Sans,sans-serif"
+                  fontSize="13" fontWeight="600" fill="#FFFFFF">Escalate</text>
+              </g>
+              {/* 04 Enrich — red */}
+              <g filter="url(#glow-m)">
+                <rect x="236" y="171" width="136" height="42" rx="9"
+                  fill="#6B1614" stroke="#99332F" strokeWidth="2"/>
+                <text x="304" y="187" textAnchor="middle" fontFamily="DM Sans,sans-serif"
+                  fontSize="10" fontWeight="600" fill="rgba(255,255,255,0.6)" letterSpacing="0.08em">04</text>
+                <text x="304" y="202" textAnchor="middle" fontFamily="DM Sans,sans-serif"
+                  fontSize="13" fontWeight="600" fill="#FFFFFF">Enrich</text>
+              </g>
+              {/* 05 Validate */}
+              <g>
+                <rect x="104" y="248" width="176" height="42" rx="9"
+                  fill="#1e1e1e" stroke="rgba(0,0,0,0)" strokeWidth="1.5"/>
+                <text x="192" y="264" textAnchor="middle" fontFamily="DM Sans,sans-serif"
+                  fontSize="10" fontWeight="600" fill="rgba(255,255,255,0.35)" letterSpacing="0.08em">05</text>
+                <text x="192" y="279" textAnchor="middle" fontFamily="DM Sans,sans-serif"
+                  fontSize="13" fill="rgba(255,255,255,0.72)">Validate</text>
+              </g>
+              {/* 06 Resolve — red */}
+              <g filter="url(#glow-m)">
+                <rect x="104" y="327" width="176" height="42" rx="9"
+                  fill="#6B1614" stroke="#99332F" strokeWidth="2"/>
+                <text x="192" y="343" textAnchor="middle" fontFamily="DM Sans,sans-serif"
+                  fontSize="10" fontWeight="600" fill="rgba(255,255,255,0.6)" letterSpacing="0.08em">06</text>
+                <text x="192" y="358" textAnchor="middle" fontFamily="DM Sans,sans-serif"
+                  fontSize="13" fontWeight="600" fill="#FFFFFF">Resolve</text>
+              </g>
+              {/* 07 Document / Close */}
+              <g>
+                <rect x="104" y="406" width="176" height="42" rx="9"
+                  fill="#1e1e1e" stroke="rgba(0,0,0,0)" strokeWidth="1.5"/>
+                <text x="192" y="422" textAnchor="middle" fontFamily="DM Sans,sans-serif"
+                  fontSize="10" fontWeight="600" fill="rgba(255,255,255,0.35)" letterSpacing="0.08em">07</text>
+                <text x="192" y="437" textAnchor="middle" fontFamily="DM Sans,sans-serif"
+                  fontSize="13" fill="rgba(255,255,255,0.72)">Document / Close</text>
+              </g>
+            </svg>
+
+          </div>
+          <p className="diff-scroll-hint">← scroll to see full flow →</p>
+
+          {/* Legend */}
+          <div className="diff-legend">
+            <div className="diff-legend-item">
+              <span className="diff-legend-node diff-legend-node--active">STEP</span>
+              <div className="diff-legend-text">
+                <span className="diff-legend-title">Where AI moves the needle</span>
+                <span className="diff-legend-sub">High volume, consistent input, clear output. Demo these.</span>
+              </div>
+            </div>
+            <div className="diff-legend-item">
+              <span className="diff-legend-node">STEP</span>
+              <div className="diff-legend-text">
+                <span className="diff-legend-title">Not the focus</span>
+                <span className="diff-legend-sub">Low AI signal. Acknowledge and move on.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ── Sticky phase stepper ─────────────────────────────── */}
       {/*
         For active-phase highlighting as the user scrolls, promote this to a
@@ -522,7 +759,7 @@ export default function OpwalkPage() {
         <div className="flags-inner">
           <div className="flags-head">
             <span className="chip chip--red">Overheard in discovery</span>
-            <h2>Red flags <em>worth pausing</em> for.</h2>
+            <h2><em>Red flags</em> worth pausing for</h2>
             <p>If you hear any of these, slow down. Each one warrants a conversation before you build a single demo slide.</p>
           </div>
           <div className="flag-list">
@@ -537,7 +774,7 @@ export default function OpwalkPage() {
           <div className="post-head">
             <span className="chip chip--red">After the call</span>
             <h2 style={{ marginTop: '1.25rem' }}>Post-interview <em>actions</em></h2>
-            <p>The walkthrough is only valuable if you translate it. Four moves between the call and the demo.</p>
+            <p>The walkthrough is only valuable if you act on it. Four moves between the call and the demo.</p>
           </div>
           <div className="timeline">
             {POST_INTERVIEW.map((s, i) => (
