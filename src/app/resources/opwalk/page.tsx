@@ -859,7 +859,7 @@ export default function OpwalkPage() {
               <ul>
                 <li>Clarity on where your team&apos;s discovery is leaving decision confidence on the table</li>
                 <li>Clarity on which changes to make - and in what order</li>
-                <li>Clarity on whether structured, reinforcedß coaching is the right decision for your team</li>
+                <li>Clarity on whether structured, reinforced coaching is the right decision for your team</li>
               </ul>
             </div>
           </div>

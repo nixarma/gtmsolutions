@@ -1035,7 +1035,7 @@
 .cta p {
   margin: 0 0 2rem;
   font-family: var(--font-body); font-weight: 400;
-  font-size: 1rem; line-height: 1.85; color: rgba(255,255,255,0.65);
+  font-size: 1rem; line-height: 1.85; color: rgba(255,255,255,0.88);
   max-width: 460px;
 }
 .cta-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; }
@@ -1094,9 +1094,6 @@
 .section.practices .practice p,
 .section.post .post-head p,
 .section.post .tl-step p,
-.cta p {
-  color: #474747;
-}
 
 /* ── Contrast fix pass 2 — selectors missed in pass 1 ──────
    All values below are sage (#6C786A) or similar on white/linen.
@@ -1123,3 +1120,5 @@
 .practice .step {
   color: var(--color-ink);
 }
+
+.cta p { color: rgba(255,255,255,0.88); }
