@@ -8,6 +8,7 @@ import EngagementSection from '@/components/home/EngagementSection'
 import LogosSection from '@/components/home/LogosSection'
 import TestimonialsSection from '@/components/home/TestimonialsSection'
 import CtaSection from '@/components/home/CtaSection'
+import FadeUp from '@/components/ui/FadeUp'
 
 export const metadata: Metadata = {
   title: 'GTM Coaching & Presales Training | GTM Solutions Consulting | Nikhil Sarma',
@@ -84,14 +85,14 @@ export default function HomePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <HeroSection />
-      <ForSection />
-      <ProblemSection />
+      <FadeUp><ForSection /></FadeUp>
+      <FadeUp><ProblemSection /></FadeUp>
       <CredentialsBar />
-      <SystemSection />
-      <EngagementSection />
-      <LogosSection />
-      <TestimonialsSection />
-      <CtaSection />
+      <FadeUp><SystemSection /></FadeUp>
+      <FadeUp><EngagementSection /></FadeUp>
+      <FadeUp><LogosSection /></FadeUp>
+      <FadeUp><TestimonialsSection /></FadeUp>
+      <FadeUp><CtaSection /></FadeUp>
     </>
   )
 }
