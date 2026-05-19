@@ -4,11 +4,16 @@ import matter from 'gray-matter'
 
 const CONTENT_DIR = path.join(process.cwd(), 'content/blog')
 
+import type { Tag } from './tags'
+export type { Tag } from './tags'
+export { ALL_TAGS } from './tags'
+
 export interface PostMeta {
   slug: string
   title: string
   excerpt: string
   category: string
+  tags?: Tag[]
   date: string
   readTime: string
   author: {

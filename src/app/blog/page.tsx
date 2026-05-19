@@ -1,7 +1,9 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import type { Metadata } from 'next'
+import { Suspense } from 'react'
 import { getAllPosts, getFeaturedPost, type PostMeta } from '@/lib/posts'
+import TagFilterGrid from '@/components/blog/TagFilterGrid'
 import '@/app/blog/blog.css'
 
 export const metadata: Metadata = {
@@ -31,26 +33,8 @@ function EditorialCover({ cover }: { cover: PostMeta['cover'] }) {
   )
 }
 
-/* ── Card cover (photo or editorial) ─────────────────────── */
-function CardCover({ cover }: { cover: PostMeta['cover'] }) {
-  if (cover.kind === 'photo' && cover.src) {
-    return (
-      <Image
-        src={cover.src}
-        alt={cover.alt ?? ''}
-        fill
-        sizes="(max-width: 640px) 100vw, (max-width: 980px) 50vw, 33vw"
-        className="object-cover"
-        style={{ transition: 'transform 800ms cubic-bezier(0.2,0.6,0.2,1)' }}
-      />
-    )
-  }
-  return <EditorialCover cover={cover} />
-}
-
 /* ── Featured hero card ───────────────────────────────────── */
 function FeaturedCard({ post }: { post: PostMeta }) {
-  // Split title at last period for the sage-coloured period treatment
   const titleBody = post.title.replace(/\.$/, '')
   return (
     <Link href={`/blog/${post.slug}`} className="blog-featured">
@@ -86,26 +70,6 @@ function FeaturedCard({ post }: { post: PostMeta }) {
   )
 }
 
-/* ── Grid card ────────────────────────────────────────────── */
-function GridCard({ post }: { post: PostMeta }) {
-  return (
-    <Link href={`/blog/${post.slug}`} className="blog-card">
-      <div className="blog-card__media">
-        <span className="blog-card__category">{post.category}</span>
-        <CardCover cover={post.cover} />
-      </div>
-      <div className="blog-card__meta">
-        <span>{post.date}</span>
-        <span style={{ opacity: 0.5 }}>·</span>
-        <span>{post.readTime}</span>
-      </div>
-      <h3 className="blog-card__title">{post.title}</h3>
-      <p className="blog-card__excerpt">{post.excerpt}</p>
-      <div className="blog-card__byline">By {post.author.name}</div>
-    </Link>
-  )
-}
-
 /* ── Page ─────────────────────────────────────────────────── */
 export default function BlogPage() {
   const allPosts = getAllPosts()
@@ -113,7 +77,7 @@ export default function BlogPage() {
   const rest = allPosts.filter(p => p.slug !== featured?.slug)
 
   return (
-    <main style={{ paddingTop: '64px' /* nav height */ }}>
+    <main style={{ paddingTop: '64px' }}>
 
       {/* Intro */}
       <section style={{ background: 'var(--color-white)' }}>
@@ -156,35 +120,13 @@ export default function BlogPage() {
         </section>
       )}
 
-      {/* Grid */}
+      {/* Tag filter bar + grid */}
       {rest.length > 0 && (
-        <section style={{ background: 'var(--color-white)' }}>
-          <div className="section-inner" style={{ padding: '0 5% 5rem' }}>
-            <div className="blog-section-head">
-              <div>
-                <span
-                  className="blog-eyebrow blog-eyebrow--ghost"
-                  style={{ marginBottom: '0.75rem', display: 'inline-block' }}
-                >
-                  Recent Writing
-                </span>
-                <h2 style={{
-                  fontFamily: 'var(--font-display)',
-                  fontWeight: 500,
-                  fontSize: 'clamp(1.5rem, 2.2vw, 2rem)',
-                  color: 'var(--color-ink)',
-                }}>
-                  More essays &amp; frameworks.
-                </h2>
-              </div>
-              <div className="blog-section-head__right">{rest.length} essays</div>
-            </div>
-            <div className="blog-grid">
-              {rest.map(post => <GridCard key={post.slug} post={post} />)}
-            </div>
-          </div>
-        </section>
+        <Suspense fallback={null}>
+          <TagFilterGrid posts={rest} totalCount={rest.length} />
+        </Suspense>
       )}
+
     </main>
   )
 }
