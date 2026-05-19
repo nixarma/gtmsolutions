@@ -4,38 +4,43 @@
  * Faithful Next.js conversion of the Claude Design opwalk-page.jsx.
  * Class names match opwalk.css exactly.
  *
- * Deployment:
- *   page.tsx  → src/app/resources/opwalk/page.tsx
- *   opwalk.css → src/app/resources/opwalk/opwalk.css
- *
- * The sticky stepper active-phase highlighting requires a client component.
- * See <PhaseStepper> below - it is already promoted to 'use client'.
- *
- * CTA: the design used two buttons + a "What you'll leave with" card.
- * This conversion keeps that layout and adds <CalEmbed> in place of the
- * static card so the booking widget sits in the right column.
- * Replace CAL_LINK with your actual cal.com event slug.
+ * NOTE: This file uses 'use client' to support Motion animations.
+ * Metadata has been moved to src/app/resources/opwalk/layout.tsx
  */
 
-import type { Metadata } from 'next'
+'use client'
+
 import Link from 'next/link'
+import { motion, useInView } from 'motion/react'
+import { useRef } from 'react'
+import { fadeUp } from '@/lib/animations'
 import { CalEmbed } from '@/components/blog/BlogClientComponents'
 import './opwalk.css'
 
-export const metadata: Metadata = {
-  title: 'Operational Walkthrough | GTM Solutions Consulting',
-  description:
-    'A structured 5-phase discovery framework for AEs and SEs selling AI. Find where AI actually fits in your prospect\'s workflow before you build a single demo slide.',
-  alternates: { canonical: '/resources/opwalk' },
-  openGraph: {
-    title: 'Operational Walkthrough | GTM Solutions Consulting',
-    description:
-      'Stop demoing AI features nobody asked for. A 5-phase structured discovery framework for AEs and SEs.',
-    type: 'article',
-  },
-}
-
 const CAL_LINK = 'nikhilsarma/intros'
+
+/* ── Scroll fade wrapper ──────────────────────────────────── */
+
+function FadeUp({ children, className, delay = 0 }: {
+  children: React.ReactNode
+  className?: string
+  delay?: number
+}) {
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: true, margin: '-80px' })
+  return (
+    <motion.div
+      ref={ref}
+      variants={fadeUp}
+      initial="hidden"
+      animate={isInView ? 'visible' : 'hidden'}
+      transition={{ duration: 0.7, ease: 'easeOut', delay }}
+      className={className}
+    >
+      {children}
+    </motion.div>
+  )
+}
 
 /* ── Data ─────────────────────────────────────────────────── */
 
@@ -171,7 +176,6 @@ const SIGNALS_GOOD = [
   { label: 'Strong AI candidate', body: 'High volume, consistent inputs, rule-based steps, clear output. The process runs the same way every time.' },
   { label: 'Transformation opportunity', body: 'Something they can\u2019t do at all today - scale, speed, or language coverage - not just doing the same thing faster.' },
   { label: 'Executive alignment', body: 'The pain connects directly to a KBR the CEO or board is already tracking - revenue, cost, or risk. Someone at the top has a reason to care.' },
-  
 ]
 const SIGNALS_RISK = [
   { label: 'Weak AI candidate', body: 'Low frequency, high variability, heavy editorial judgment, or data that is inconsistent and unstructured.' },
@@ -206,7 +210,6 @@ const POST_INTERVIEW = [
   { label: 'Build the demo brief', body: 'Map the 2\u20133 strongest AI use-cases to specific capabilities. That\u2019s your demo. Nothing else.' },
 ]
 
-/* Testimonials - placeholder copy. Replace with real AE/SE quotes before shipping. */
 type TestimonialVariant = 'default' | 'linen' | 'ink'
 type TestimonialData = {
   quote: string; name: string; role: string; company: string
@@ -236,28 +239,29 @@ const TESTIMONIALS: Record<'midPhases' | 'midPractices' | 'preCta', TestimonialD
 function Testimonial({ quote, name, role, company, initials, variant = 'default' }: TestimonialData) {
   const variantClass = variant === 'linen' ? 'testi--linen' : variant === 'ink' ? 'testi--ink' : ''
   return (
-    <section className={`testi ${variantClass}`}>
-      <div className="testi-inner">
-        <span className="testi-mark" aria-hidden="true">&ldquo;</span>
-        <blockquote className="testi-quote">{quote}</blockquote>
-        <div className="testi-attr">
-          <span className="testi-avatar" aria-hidden="true">{initials}</span>
-          <div className="testi-meta">
-            <span className="testi-name">{name}</span>
-            <span className="testi-role">
-              {role}{company && <>, <b>{company}</b></>}
-            </span>
+    <FadeUp>
+      <section className={`testi ${variantClass}`}>
+        <div className="testi-inner">
+          <span className="testi-mark" aria-hidden="true">&ldquo;</span>
+          <blockquote className="testi-quote">{quote}</blockquote>
+          <div className="testi-attr">
+            <span className="testi-avatar" aria-hidden="true">{initials}</span>
+            <div className="testi-meta">
+              <span className="testi-name">{name}</span>
+              <span className="testi-role">
+                {role}{company && <>, <b>{company}</b></>}
+              </span>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </FadeUp>
   )
 }
 
 function PhaseBlock({ phase, idx }: { phase: Phase; idx: number }) {
   return (
     <article className="phase" id={phase.id}>
-      {/* Sticky left rail */}
       <div className="phase-rail">
         <span className="phase-kicker">Phase {idx + 1}</span>
         <h2>{phase.label}</h2>
@@ -266,13 +270,10 @@ function PhaseBlock({ phase, idx }: { phase: Phase; idx: number }) {
           {phase.durationMin}
         </div>
       </div>
-
-      {/* Body */}
       <div className="phase-body">
         <div className="phase-aim">
           <p>{phase.aim}</p>
         </div>
-
         {phase.split ? (
           <>
             <div className="sub-eyebrow">Questions to ask</div>
@@ -317,7 +318,6 @@ function PhaseBlock({ phase, idx }: { phase: Phase; idx: number }) {
             </div>
           </>
         )}
-
         <div className="sub-eyebrow">Failure mode</div>
         <div className="failure-block">
           <p className="failure-mode">{phase.failureMode}</p>
@@ -334,7 +334,7 @@ export default function OpwalkPage() {
   return (
     <main style={{ paddingTop: '64px', background: 'var(--color-ink)' }}>
 
-      {/* ── Hero ──────────────────────────────────────────────── */}
+      {/* ── Hero -- fade-up-children CSS animation, no Motion ── */}
       <section className="hero">
         <div className="hero-inner">
           <div className="fade-up-children">
@@ -358,18 +358,12 @@ export default function OpwalkPage() {
               <span>Use it <b>pre-demo</b></span>
             </div>
           </div>
-
-          {/* Anatomy of the walkthrough card */}
           <aside className="anatomy" aria-label="Anatomy of the walkthrough">
             <div className="anatomy-head">
               <span>Anatomy of the walkthrough</span>
               <span className="ttl">60 min</span>
             </div>
-            <div
-              className="anatomy-bar"
-              role="img"
-              aria-label="60 minutes split across 5 phases: 10, 15, 20, 10, 5 minutes"
-            >
+            <div className="anatomy-bar" role="img" aria-label="60 minutes split across 5 phases: 10, 15, 20, 10, 5 minutes">
               {ANATOMY.map(a => (
                 <div key={a.num} className={`anatomy-seg ${a.cls}`} style={{ flexGrow: a.grow }} />
               ))}
@@ -378,20 +372,15 @@ export default function OpwalkPage() {
               {ANATOMY.map(a => (
                 <div className="anatomy-leg-item" key={a.num}>
                   <span className={`swatch ${a.cls}`} aria-hidden="true" />
-                  <span>
-                    {a.label}
-                    <span className="mins">{a.mins}</span>
-                  </span>
+                  <span>{a.label}<span className="mins">{a.mins}</span></span>
                 </div>
               ))}
             </div>
           </aside>
         </div>
-
-        {/* Stats row */}
         <div className="hero-inner" style={{ paddingTop: 0, paddingBottom: '5rem', display: 'block' }}>
-        <p className="stats-eyebrow">Measures of success</p>
-        <div className="hero-stats">
+          <p className="stats-eyebrow">Measures of success</p>
+          <div className="hero-stats">
             {STATS.map((s, i) => (
               <div key={i} className="hero-stat">
                 <div className="n">{s.num}{s.suf && <span className="suf">{s.suf}</span>}</div>
@@ -402,249 +391,94 @@ export default function OpwalkPage() {
         </div>
       </section>
 
-      {/* ── OpWalk difference diagram ────────────────────────── */}
-      <section className="diff-section">
-        <div className="diff-inner">
-          <div className="diff-head">
-            <span className="diff-eyebrow">The OpWalk difference</span>
-            <h2 className="diff-h2">Demo what moves the needle. <em>Skip what doesn&apos;t.</em></h2>
-            <p className="diff-caveat">Your prospect&apos;s workflow will look different. The principle is the same.</p>
-          </div>
-          <div className="diff-diagram-wrap">
-
-            {/* ── DESKTOP SVG ── */}
-            <svg className="diff-svg diff-svg--desktop" viewBox="-10 80 1040 320"
-              xmlns="http://www.w3.org/2000/svg" aria-label="Process flow diagram">
-              <defs>
-                <marker id="arr-d" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
-                  <path d="M0,0 L0,6 L9,3 z" fill="#474747" />
-                </marker>
-                <filter id="glow-d" x="-60%" y="-60%" width="220%" height="220%">
-                  <feGaussianBlur stdDeviation="7" result="blur"/>
-                  <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-                </filter>
-              </defs>
-
-              {/* CONNECTORS */}
-              {/* 01→02 */}
-              <line stroke="#474747" strokeWidth="1.5"
-                x1="150" y1="240" x2="167" y2="240" markerEnd="url(#arr-d)" />
-              {/* 02 top → elbow right → 03 left */}
-              <path fill="none" stroke="#474747" strokeWidth="1.5"
-                d="M244,208 L244,148 Q244,125 269,125 L329,125" markerEnd="url(#arr-d)" />
-              {/* 02 bottom → elbow right → 04 left */}
-              <path fill="none" stroke="#474747" strokeWidth="1.5"
-                d="M244,272 L244,332 Q244,355 269,355 L329,355" markerEnd="url(#arr-d)" />
-              {/* 03 right → elbow down → 05 top */}
-              <path fill="none" stroke="#474747" strokeWidth="1.5"
-                d="M484,125 L565,125 Q590,125 590,150 L590,201" markerEnd="url(#arr-d)" />
-              {/* 04 right → elbow up → 05 bottom */}
-              <path fill="none" stroke="#474747" strokeWidth="1.5"
-                d="M484,355 L565,355 Q590,355 590,330 L590,279" markerEnd="url(#arr-d)" />
-              {/* 05→06 */}
-              <line stroke="#474747" strokeWidth="1.5"
-                x1="660" y1="240" x2="679" y2="240" markerEnd="url(#arr-d)" />
-              {/* 06→07 */}
-              <line stroke="#474747" strokeWidth="1.5"
-                x1="834" y1="240" x2="853" y2="240" markerEnd="url(#arr-d)" />
-
-              {/* NODES */}
-              {/* 01 Intake / triage */}
-              <g>
-                <rect x="10" y="208" width="140" height="64" rx="12"
-                  fill="#1e1e1e" stroke="rgba(0,0,0,0)" strokeWidth="1.5"/>
-                <text x="80" y="232" textAnchor="middle" fontFamily="DM Sans,sans-serif"
-                  fontSize="11" fontWeight="600" fill="rgba(255,255,255,0.35)" letterSpacing="0.08em">01</text>
-                <text x="80" y="252" textAnchor="middle" fontFamily="DM Sans,sans-serif"
-                  fontSize="14" fill="rgba(255,255,255,0.72)">Intake / triage</text>
-              </g>
-              {/* 02 Assign / investigate */}
-              <g>
-                <rect x="174" y="208" width="140" height="64" rx="12"
-                  fill="#1e1e1e" stroke="rgba(0,0,0,0)" strokeWidth="1.5"/>
-                <text x="244" y="232" textAnchor="middle" fontFamily="DM Sans,sans-serif"
-                  fontSize="11" fontWeight="600" fill="rgba(255,255,255,0.35)" letterSpacing="0.08em">02</text>
-                <text x="244" y="252" textAnchor="middle" fontFamily="DM Sans,sans-serif"
-                  fontSize="14" fill="rgba(255,255,255,0.72)">Assign / investigate</text>
-              </g>
-              {/* 03 Escalate — red */}
-              <g filter="url(#glow-d)">
-                <rect x="336" y="93" width="148" height="64" rx="12"
-                  fill="#6B1614" stroke="#99332F" strokeWidth="2"/>
-                <text x="410" y="117" textAnchor="middle" fontFamily="DM Sans,sans-serif"
-                  fontSize="11" fontWeight="600" fill="rgba(255,255,255,0.6)" letterSpacing="0.08em">03</text>
-                <text x="410" y="137" textAnchor="middle" fontFamily="DM Sans,sans-serif"
-                  fontSize="15" fontWeight="600" fill="#FFFFFF">Escalate</text>
-              </g>
-              {/* 04 Enrich — red */}
-              <g filter="url(#glow-d)">
-                <rect x="336" y="323" width="148" height="64" rx="12"
-                  fill="#6B1614" stroke="#99332F" strokeWidth="2"/>
-                <text x="410" y="347" textAnchor="middle" fontFamily="DM Sans,sans-serif"
-                  fontSize="11" fontWeight="600" fill="rgba(255,255,255,0.6)" letterSpacing="0.08em">04</text>
-                <text x="410" y="367" textAnchor="middle" fontFamily="DM Sans,sans-serif"
-                  fontSize="15" fontWeight="600" fill="#FFFFFF">Enrich</text>
-              </g>
-              {/* 05 Validate */}
-              <g>
-                <rect x="520" y="208" width="140" height="64" rx="12"
-                  fill="#1e1e1e" stroke="rgba(0,0,0,0)" strokeWidth="1.5"/>
-                <text x="590" y="232" textAnchor="middle" fontFamily="DM Sans,sans-serif"
-                  fontSize="11" fontWeight="600" fill="rgba(255,255,255,0.35)" letterSpacing="0.08em">05</text>
-                <text x="590" y="252" textAnchor="middle" fontFamily="DM Sans,sans-serif"
-                  fontSize="14" fill="rgba(255,255,255,0.72)">Validate</text>
-              </g>
-              {/* 06 Resolve — red */}
-              <g filter="url(#glow-d)">
-                <rect x="686" y="208" width="148" height="64" rx="12"
-                  fill="#6B1614" stroke="#99332F" strokeWidth="2"/>
-                <text x="760" y="232" textAnchor="middle" fontFamily="DM Sans,sans-serif"
-                  fontSize="11" fontWeight="600" fill="rgba(255,255,255,0.6)" letterSpacing="0.08em">06</text>
-                <text x="760" y="252" textAnchor="middle" fontFamily="DM Sans,sans-serif"
-                  fontSize="15" fontWeight="600" fill="#FFFFFF">Resolve</text>
-              </g>
-              {/* 07 Document / Close */}
-              <g>
-                <rect x="860" y="208" width="140" height="64" rx="12"
-                  fill="#1e1e1e" stroke="rgba(0,0,0,0)" strokeWidth="1.5"/>
-                <text x="930" y="232" textAnchor="middle" fontFamily="DM Sans,sans-serif"
-                  fontSize="11" fontWeight="600" fill="rgba(255,255,255,0.35)" letterSpacing="0.08em">07</text>
-                <text x="930" y="252" textAnchor="middle" fontFamily="DM Sans,sans-serif"
-                  fontSize="14" fill="rgba(255,255,255,0.72)">Document / Close</text>
-              </g>
-            </svg>
-
-            {/* ── MOBILE SVG ── */}
-            <svg className="diff-svg diff-svg--mobile" viewBox="0 10 410 448"
-              xmlns="http://www.w3.org/2000/svg" aria-label="Process flow diagram">
-              <defs>
-                <marker id="arr-m" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
-                  <path d="M0,0 L0,6 L9,3 z" fill="#474747" />
-                </marker>
-                <filter id="glow-m" x="-60%" y="-60%" width="220%" height="220%">
-                  <feGaussianBlur stdDeviation="6" result="blur"/>
-                  <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-                </filter>
-              </defs>
-
-              {/* CONNECTORS */}
-              {/* 01→02 */}
-              <line stroke="#474747" strokeWidth="1.5"
-                x1="192" y1="64" x2="192" y2="93" markerEnd="url(#arr-m)" />
-              {/* 02 → 03 elbow left */}
-              <path fill="none" stroke="#474747" strokeWidth="1.5"
-                d="M192,143 L192,169 Q192,192 124,192" markerEnd="url(#arr-m)" />
-              {/* 02 → 04 elbow right */}
-              <path fill="none" stroke="#474747" strokeWidth="1.5"
-                d="M192,143 L192,169 Q192,192 252,192" markerEnd="url(#arr-m)" />
-              {/* 03 → 05 elbow right */}
-              <path fill="none" stroke="#474747" strokeWidth="1.5"
-                d="M79,213 L79,247 Q79,269 141,269" markerEnd="url(#arr-m)" />
-              {/* 04 → 05 elbow left */}
-              <path fill="none" stroke="#474747" strokeWidth="1.5"
-                d="M304,213 L304,247 Q304,269 244,269" markerEnd="url(#arr-m)" />
-              {/* 05→06 */}
-              <line stroke="#474747" strokeWidth="1.5"
-                x1="192" y1="290" x2="192" y2="320" markerEnd="url(#arr-m)" />
-              {/* 06→07 */}
-              <line stroke="#474747" strokeWidth="1.5"
-                x1="192" y1="369" x2="192" y2="399" markerEnd="url(#arr-m)" />
-
-              {/* NODES */}
-              {/* 01 Intake / triage */}
-              <g>
-                <rect x="104" y="22" width="176" height="42" rx="9"
-                  fill="#1e1e1e" stroke="rgba(0,0,0,0)" strokeWidth="1.5"/>
-                <text x="192" y="38" textAnchor="middle" fontFamily="DM Sans,sans-serif"
-                  fontSize="10" fontWeight="600" fill="rgba(255,255,255,0.35)" letterSpacing="0.08em">01</text>
-                <text x="192" y="53" textAnchor="middle" fontFamily="DM Sans,sans-serif"
-                  fontSize="13" fill="rgba(255,255,255,0.72)">Intake / triage</text>
-              </g>
-              {/* 02 Assign / investigate */}
-              <g>
-                <rect x="104" y="101" width="176" height="42" rx="9"
-                  fill="#1e1e1e" stroke="rgba(0,0,0,0)" strokeWidth="1.5"/>
-                <text x="192" y="117" textAnchor="middle" fontFamily="DM Sans,sans-serif"
-                  fontSize="10" fontWeight="600" fill="rgba(255,255,255,0.35)" letterSpacing="0.08em">02</text>
-                <text x="192" y="132" textAnchor="middle" fontFamily="DM Sans,sans-serif"
-                  fontSize="13" fill="rgba(255,255,255,0.72)">Assign / investigate</text>
-              </g>
-              {/* 03 Escalate — red */}
-              <g filter="url(#glow-m)">
-                <rect x="11" y="171" width="136" height="42" rx="9"
-                  fill="#6B1614" stroke="#99332F" strokeWidth="2"/>
-                <text x="79" y="187" textAnchor="middle" fontFamily="DM Sans,sans-serif"
-                  fontSize="10" fontWeight="600" fill="rgba(255,255,255,0.6)" letterSpacing="0.08em">03</text>
-                <text x="79" y="202" textAnchor="middle" fontFamily="DM Sans,sans-serif"
-                  fontSize="13" fontWeight="600" fill="#FFFFFF">Escalate</text>
-              </g>
-              {/* 04 Enrich — red */}
-              <g filter="url(#glow-m)">
-                <rect x="236" y="171" width="136" height="42" rx="9"
-                  fill="#6B1614" stroke="#99332F" strokeWidth="2"/>
-                <text x="304" y="187" textAnchor="middle" fontFamily="DM Sans,sans-serif"
-                  fontSize="10" fontWeight="600" fill="rgba(255,255,255,0.6)" letterSpacing="0.08em">04</text>
-                <text x="304" y="202" textAnchor="middle" fontFamily="DM Sans,sans-serif"
-                  fontSize="13" fontWeight="600" fill="#FFFFFF">Enrich</text>
-              </g>
-              {/* 05 Validate */}
-              <g>
-                <rect x="104" y="248" width="176" height="42" rx="9"
-                  fill="#1e1e1e" stroke="rgba(0,0,0,0)" strokeWidth="1.5"/>
-                <text x="192" y="264" textAnchor="middle" fontFamily="DM Sans,sans-serif"
-                  fontSize="10" fontWeight="600" fill="rgba(255,255,255,0.35)" letterSpacing="0.08em">05</text>
-                <text x="192" y="279" textAnchor="middle" fontFamily="DM Sans,sans-serif"
-                  fontSize="13" fill="rgba(255,255,255,0.72)">Validate</text>
-              </g>
-              {/* 06 Resolve — red */}
-              <g filter="url(#glow-m)">
-                <rect x="104" y="327" width="176" height="42" rx="9"
-                  fill="#6B1614" stroke="#99332F" strokeWidth="2"/>
-                <text x="192" y="343" textAnchor="middle" fontFamily="DM Sans,sans-serif"
-                  fontSize="10" fontWeight="600" fill="rgba(255,255,255,0.6)" letterSpacing="0.08em">06</text>
-                <text x="192" y="358" textAnchor="middle" fontFamily="DM Sans,sans-serif"
-                  fontSize="13" fontWeight="600" fill="#FFFFFF">Resolve</text>
-              </g>
-              {/* 07 Document / Close */}
-              <g>
-                <rect x="104" y="406" width="176" height="42" rx="9"
-                  fill="#1e1e1e" stroke="rgba(0,0,0,0)" strokeWidth="1.5"/>
-                <text x="192" y="422" textAnchor="middle" fontFamily="DM Sans,sans-serif"
-                  fontSize="10" fontWeight="600" fill="rgba(255,255,255,0.35)" letterSpacing="0.08em">07</text>
-                <text x="192" y="437" textAnchor="middle" fontFamily="DM Sans,sans-serif"
-                  fontSize="13" fill="rgba(255,255,255,0.72)">Document / Close</text>
-              </g>
-            </svg>
-
-          </div>
-          <p className="diff-scroll-hint">← scroll to see full flow →</p>
-
-          {/* Legend */}
-          <div className="diff-legend">
-            <div className="diff-legend-item">
-              <span className="diff-legend-node diff-legend-node--active">STEP</span>
-              <div className="diff-legend-text">
-                <span className="diff-legend-title">Where AI moves the needle</span>
-                <span className="diff-legend-sub">High volume, consistent input, clear output. Demo these.</span>
-              </div>
+      {/* ── OpWalk difference diagram ── */}
+      <FadeUp>
+        <section className="diff-section">
+          <div className="diff-inner">
+            <div className="diff-head">
+              <span className="diff-eyebrow">The OpWalk difference</span>
+              <h2 className="diff-h2">Demo what moves the needle. <em>Skip what doesn&apos;t.</em></h2>
+              <p className="diff-caveat">Your prospect&apos;s workflow will look different. The principle is the same.</p>
             </div>
-            <div className="diff-legend-item">
-              <span className="diff-legend-node">STEP</span>
-              <div className="diff-legend-text">
-                <span className="diff-legend-title">Not the focus</span>
-                <span className="diff-legend-sub">Low AI signal. Acknowledge and move on.</span>
+            <div className="diff-diagram-wrap">
+
+              {/* DESKTOP SVG */}
+              <svg className="diff-svg diff-svg--desktop" viewBox="-10 80 1040 320" xmlns="http://www.w3.org/2000/svg" aria-label="Process flow diagram">
+                <defs>
+                  <marker id="arr-d" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                    <path d="M0,0 L0,6 L9,3 z" fill="#474747" />
+                  </marker>
+                  <filter id="glow-d" x="-60%" y="-60%" width="220%" height="220%">
+                    <feGaussianBlur stdDeviation="7" result="blur"/>
+                    <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                  </filter>
+                </defs>
+                <line stroke="#474747" strokeWidth="1.5" x1="150" y1="240" x2="167" y2="240" markerEnd="url(#arr-d)" />
+                <path fill="none" stroke="#474747" strokeWidth="1.5" d="M244,208 L244,148 Q244,125 269,125 L329,125" markerEnd="url(#arr-d)" />
+                <path fill="none" stroke="#474747" strokeWidth="1.5" d="M244,272 L244,332 Q244,355 269,355 L329,355" markerEnd="url(#arr-d)" />
+                <path fill="none" stroke="#474747" strokeWidth="1.5" d="M484,125 L565,125 Q590,125 590,150 L590,201" markerEnd="url(#arr-d)" />
+                <path fill="none" stroke="#474747" strokeWidth="1.5" d="M484,355 L565,355 Q590,355 590,330 L590,279" markerEnd="url(#arr-d)" />
+                <line stroke="#474747" strokeWidth="1.5" x1="660" y1="240" x2="679" y2="240" markerEnd="url(#arr-d)" />
+                <line stroke="#474747" strokeWidth="1.5" x1="834" y1="240" x2="853" y2="240" markerEnd="url(#arr-d)" />
+                <g><rect x="10" y="208" width="140" height="64" rx="12" fill="#1e1e1e" stroke="rgba(0,0,0,0)" strokeWidth="1.5"/><text x="80" y="232" textAnchor="middle" fontFamily="DM Sans,sans-serif" fontSize="11" fontWeight="600" fill="rgba(255,255,255,0.35)" letterSpacing="0.08em">01</text><text x="80" y="252" textAnchor="middle" fontFamily="DM Sans,sans-serif" fontSize="14" fill="rgba(255,255,255,0.72)">Intake / triage</text></g>
+                <g><rect x="174" y="208" width="140" height="64" rx="12" fill="#1e1e1e" stroke="rgba(0,0,0,0)" strokeWidth="1.5"/><text x="244" y="232" textAnchor="middle" fontFamily="DM Sans,sans-serif" fontSize="11" fontWeight="600" fill="rgba(255,255,255,0.35)" letterSpacing="0.08em">02</text><text x="244" y="252" textAnchor="middle" fontFamily="DM Sans,sans-serif" fontSize="14" fill="rgba(255,255,255,0.72)">Assign / investigate</text></g>
+                <g filter="url(#glow-d)"><rect x="336" y="93" width="148" height="64" rx="12" fill="#6B1614" stroke="#99332F" strokeWidth="2"/><text x="410" y="117" textAnchor="middle" fontFamily="DM Sans,sans-serif" fontSize="11" fontWeight="600" fill="rgba(255,255,255,0.6)" letterSpacing="0.08em">03</text><text x="410" y="137" textAnchor="middle" fontFamily="DM Sans,sans-serif" fontSize="15" fontWeight="600" fill="#FFFFFF">Escalate</text></g>
+                <g filter="url(#glow-d)"><rect x="336" y="323" width="148" height="64" rx="12" fill="#6B1614" stroke="#99332F" strokeWidth="2"/><text x="410" y="347" textAnchor="middle" fontFamily="DM Sans,sans-serif" fontSize="11" fontWeight="600" fill="rgba(255,255,255,0.6)" letterSpacing="0.08em">04</text><text x="410" y="367" textAnchor="middle" fontFamily="DM Sans,sans-serif" fontSize="15" fontWeight="600" fill="#FFFFFF">Enrich</text></g>
+                <g><rect x="520" y="208" width="140" height="64" rx="12" fill="#1e1e1e" stroke="rgba(0,0,0,0)" strokeWidth="1.5"/><text x="590" y="232" textAnchor="middle" fontFamily="DM Sans,sans-serif" fontSize="11" fontWeight="600" fill="rgba(255,255,255,0.35)" letterSpacing="0.08em">05</text><text x="590" y="252" textAnchor="middle" fontFamily="DM Sans,sans-serif" fontSize="14" fill="rgba(255,255,255,0.72)">Validate</text></g>
+                <g filter="url(#glow-d)"><rect x="686" y="208" width="148" height="64" rx="12" fill="#6B1614" stroke="#99332F" strokeWidth="2"/><text x="760" y="232" textAnchor="middle" fontFamily="DM Sans,sans-serif" fontSize="11" fontWeight="600" fill="rgba(255,255,255,0.6)" letterSpacing="0.08em">06</text><text x="760" y="252" textAnchor="middle" fontFamily="DM Sans,sans-serif" fontSize="15" fontWeight="600" fill="#FFFFFF">Resolve</text></g>
+                <g><rect x="860" y="208" width="140" height="64" rx="12" fill="#1e1e1e" stroke="rgba(0,0,0,0)" strokeWidth="1.5"/><text x="930" y="232" textAnchor="middle" fontFamily="DM Sans,sans-serif" fontSize="11" fontWeight="600" fill="rgba(255,255,255,0.35)" letterSpacing="0.08em">07</text><text x="930" y="252" textAnchor="middle" fontFamily="DM Sans,sans-serif" fontSize="14" fill="rgba(255,255,255,0.72)">Document / Close</text></g>
+              </svg>
+
+              {/* MOBILE SVG */}
+              <svg className="diff-svg diff-svg--mobile" viewBox="0 10 410 448" xmlns="http://www.w3.org/2000/svg" aria-label="Process flow diagram">
+                <defs>
+                  <marker id="arr-m" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                    <path d="M0,0 L0,6 L9,3 z" fill="#474747" />
+                  </marker>
+                  <filter id="glow-m" x="-60%" y="-60%" width="220%" height="220%">
+                    <feGaussianBlur stdDeviation="6" result="blur"/>
+                    <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                  </filter>
+                </defs>
+                <line stroke="#474747" strokeWidth="1.5" x1="192" y1="64" x2="192" y2="93" markerEnd="url(#arr-m)" />
+                <path fill="none" stroke="#474747" strokeWidth="1.5" d="M192,143 L192,169 Q192,192 124,192" markerEnd="url(#arr-m)" />
+                <path fill="none" stroke="#474747" strokeWidth="1.5" d="M192,143 L192,169 Q192,192 252,192" markerEnd="url(#arr-m)" />
+                <path fill="none" stroke="#474747" strokeWidth="1.5" d="M79,213 L79,247 Q79,269 141,269" markerEnd="url(#arr-m)" />
+                <path fill="none" stroke="#474747" strokeWidth="1.5" d="M304,213 L304,247 Q304,269 244,269" markerEnd="url(#arr-m)" />
+                <line stroke="#474747" strokeWidth="1.5" x1="192" y1="290" x2="192" y2="320" markerEnd="url(#arr-m)" />
+                <line stroke="#474747" strokeWidth="1.5" x1="192" y1="369" x2="192" y2="399" markerEnd="url(#arr-m)" />
+                <g><rect x="104" y="22" width="176" height="42" rx="9" fill="#1e1e1e" stroke="rgba(0,0,0,0)" strokeWidth="1.5"/><text x="192" y="38" textAnchor="middle" fontFamily="DM Sans,sans-serif" fontSize="10" fontWeight="600" fill="rgba(255,255,255,0.35)" letterSpacing="0.08em">01</text><text x="192" y="53" textAnchor="middle" fontFamily="DM Sans,sans-serif" fontSize="13" fill="rgba(255,255,255,0.72)">Intake / triage</text></g>
+                <g><rect x="104" y="101" width="176" height="42" rx="9" fill="#1e1e1e" stroke="rgba(0,0,0,0)" strokeWidth="1.5"/><text x="192" y="117" textAnchor="middle" fontFamily="DM Sans,sans-serif" fontSize="10" fontWeight="600" fill="rgba(255,255,255,0.35)" letterSpacing="0.08em">02</text><text x="192" y="132" textAnchor="middle" fontFamily="DM Sans,sans-serif" fontSize="13" fill="rgba(255,255,255,0.72)">Assign / investigate</text></g>
+                <g filter="url(#glow-m)"><rect x="11" y="171" width="136" height="42" rx="9" fill="#6B1614" stroke="#99332F" strokeWidth="2"/><text x="79" y="187" textAnchor="middle" fontFamily="DM Sans,sans-serif" fontSize="10" fontWeight="600" fill="rgba(255,255,255,0.6)" letterSpacing="0.08em">03</text><text x="79" y="202" textAnchor="middle" fontFamily="DM Sans,sans-serif" fontSize="13" fontWeight="600" fill="#FFFFFF">Escalate</text></g>
+                <g filter="url(#glow-m)"><rect x="236" y="171" width="136" height="42" rx="9" fill="#6B1614" stroke="#99332F" strokeWidth="2"/><text x="304" y="187" textAnchor="middle" fontFamily="DM Sans,sans-serif" fontSize="10" fontWeight="600" fill="rgba(255,255,255,0.6)" letterSpacing="0.08em">04</text><text x="304" y="202" textAnchor="middle" fontFamily="DM Sans,sans-serif" fontSize="13" fontWeight="600" fill="#FFFFFF">Enrich</text></g>
+                <g><rect x="104" y="248" width="176" height="42" rx="9" fill="#1e1e1e" stroke="rgba(0,0,0,0)" strokeWidth="1.5"/><text x="192" y="264" textAnchor="middle" fontFamily="DM Sans,sans-serif" fontSize="10" fontWeight="600" fill="rgba(255,255,255,0.35)" letterSpacing="0.08em">05</text><text x="192" y="279" textAnchor="middle" fontFamily="DM Sans,sans-serif" fontSize="13" fill="rgba(255,255,255,0.72)">Validate</text></g>
+                <g filter="url(#glow-m)"><rect x="104" y="327" width="176" height="42" rx="9" fill="#6B1614" stroke="#99332F" strokeWidth="2"/><text x="192" y="343" textAnchor="middle" fontFamily="DM Sans,sans-serif" fontSize="10" fontWeight="600" fill="rgba(255,255,255,0.6)" letterSpacing="0.08em">06</text><text x="192" y="358" textAnchor="middle" fontFamily="DM Sans,sans-serif" fontSize="13" fontWeight="600" fill="#FFFFFF">Resolve</text></g>
+                <g><rect x="104" y="406" width="176" height="42" rx="9" fill="#1e1e1e" stroke="rgba(0,0,0,0)" strokeWidth="1.5"/><text x="192" y="422" textAnchor="middle" fontFamily="DM Sans,sans-serif" fontSize="10" fontWeight="600" fill="rgba(255,255,255,0.35)" letterSpacing="0.08em">07</text><text x="192" y="437" textAnchor="middle" fontFamily="DM Sans,sans-serif" fontSize="13" fill="rgba(255,255,255,0.72)">Document / Close</text></g>
+              </svg>
+
+            </div>
+            <p className="diff-scroll-hint">← scroll to see full flow →</p>
+            <div className="diff-legend">
+              <div className="diff-legend-item">
+                <span className="diff-legend-node diff-legend-node--active">STEP</span>
+                <div className="diff-legend-text">
+                  <span className="diff-legend-title">Where AI moves the needle</span>
+                  <span className="diff-legend-sub">High volume, consistent input, clear output. Demo these.</span>
+                </div>
+              </div>
+              <div className="diff-legend-item">
+                <span className="diff-legend-node">STEP</span>
+                <div className="diff-legend-text">
+                  <span className="diff-legend-title">Not the focus</span>
+                  <span className="diff-legend-sub">Low AI signal. Acknowledge and move on.</span>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </FadeUp>
 
-      {/* ── Sticky phase stepper ─────────────────────────────── */}
-      {/*
-        For active-phase highlighting as the user scrolls, promote this to a
-        client component with IntersectionObserver. The CSS .is-active class
-        is already defined in opwalk.css. See README for the pattern.
-      */}
+      {/* ── Sticky phase stepper -- no animation ── */}
       <div className="stepper">
         <div className="stepper-inner">
           <span className="stepper-label">5 phases</span>
@@ -664,7 +498,7 @@ export default function OpwalkPage() {
         </div>
       </div>
 
-      {/* ── 5 Phases ─────────────────────────────────────────── */}
+      {/* ── 5 Phases -- no animation ── */}
       <section className="phases" id="phases">
         <div className="phases-inner">
           {PHASES.map((p, i) => (
@@ -673,200 +507,194 @@ export default function OpwalkPage() {
         </div>
       </section>
 
-      {/* ── Pull-quote band ───────────────────────────────────── */}
-      <section className="pull">
-        <div className="pull-inner">
-          <div className="pull-quote">
-            A demo built before a walkthrough is a guess.<br /><br />A demo built after a walkthrough
-            is a <em>response to a problem</em> the prospect has already told you matters.<br /><br />Don't guess.
+      {/* ── Pull-quote band ── */}
+      <FadeUp>
+        <section className="pull">
+          <div className="pull-inner">
+            <div className="pull-quote">
+              A demo built before a walkthrough is a guess.<br /><br />A demo built after a walkthrough
+              is a <em>response to a problem</em> the prospect has already told you matters.<br /><br />Don't guess.
+            </div>
+            <div className="attr">The point of view</div>
           </div>
-          <div className="attr">The point of view</div>
-        </div>
-      </section>
+        </section>
+      </FadeUp>
 
-      {/* ── Testimonial - after the framework ────────────────── */}
       <Testimonial {...TESTIMONIALS.midPhases} />
 
-      {/* ── AI Readiness scorecard ────────────────────────────── */}
-      <section className="section signals">
-        <div className="section-inner">
-          <div className="signals-head">
-            <span className="chip chip--red">What to look for</span>
-            <h2 style={{ marginTop: '1.25rem' }}>AI Readiness <em>signals</em> &amp; risks</h2>
-            <p>
-              Sort what you hear into two columns as you go. By the end of the call,
-              you should know which signal each step belongs to - and whether this
-              is a deal that&apos;s ready for a demo.
-            </p>
-          </div>
-
-          <div className="score">
-            <div className="score-col">
-              <div className="score-head">
-                <span className="icon good">+</span>
-                <span className="ttl">Strong signal</span>
-                <span className="meta">Green-light a demo</span>
+      {/* ── AI Readiness scorecard ── */}
+      <FadeUp>
+        <section className="section signals">
+          <div className="section-inner">
+            <div className="signals-head">
+              <span className="chip chip--red">What to look for</span>
+              <h2 style={{ marginTop: '1.25rem' }}>AI Readiness <em>signals</em> &amp; risks</h2>
+              <p>Sort what you hear into two columns as you go. By the end of the call, you should know which signal each step belongs to - and whether this is a deal that&apos;s ready for a demo.</p>
+            </div>
+            <div className="score">
+              <div className="score-col">
+                <div className="score-head">
+                  <span className="icon good">+</span>
+                  <span className="ttl">Strong signal</span>
+                  <span className="meta">Green-light a demo</span>
+                </div>
+                {SIGNALS_GOOD.map((s, i) => (
+                  <div className="signal good" key={i}>
+                    <h4>{s.label}</h4>
+                    <p>{s.body}</p>
+                  </div>
+                ))}
               </div>
-              {SIGNALS_GOOD.map((s, i) => (
-                <div className="signal good" key={i}>
-                  <h4>{s.label}</h4>
-                  <p>{s.body}</p>
+              <div className="score-col">
+                <div className="score-head">
+                  <span className="icon risk">!</span>
+                  <span className="ttl">Risk signal</span>
+                  <span className="meta">Pause before demoing</span>
+                </div>
+                {SIGNALS_RISK.map((s, i) => (
+                  <div className="signal risk" key={i}>
+                    <h4>{s.label}</h4>
+                    <p>{s.body}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+      </FadeUp>
+
+      {/* ── Good Practices ── */}
+      <FadeUp>
+        <section className="section practices">
+          <div className="section-inner">
+            <div className="practices-head">
+              <span className="chip chip--red">In-room habits</span>
+              <h2 style={{ marginTop: '1.25rem' }}>Good practices</h2>
+              <p>The walkthrough is a buyer-centric conversation. These habits keep you on that side of the table - and out of demo-mode reflexes.</p>
+            </div>
+            <div className="practice-grid">
+              {PRACTICES.map((p, i) => (
+                <div className="practice" key={i}>
+                  <div className="step">{String(i + 1).padStart(2, '0')}</div>
+                  <h4>{p.label}</h4>
+                  <p>{p.body}</p>
                 </div>
               ))}
             </div>
-            <div className="score-col">
-              <div className="score-head">
-                <span className="icon risk">!</span>
-                <span className="ttl">Risk signal</span>
-                <span className="meta">Pause before demoing</span>
-              </div>
-              {SIGNALS_RISK.map((s, i) => (
-                <div className="signal risk" key={i}>
-                  <h4>{s.label}</h4>
-                  <p>{s.body}</p>
-                </div>
-              ))}
-            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </FadeUp>
 
-      {/* ── Good Practices ────────────────────────────────────── */}
-      <section className="section practices">
-        <div className="section-inner">
-          <div className="practices-head">
-            <span className="chip chip--red">In-room habits</span>
-            <h2 style={{ marginTop: '1.25rem' }}>Good practices</h2>
-            <p>The walkthrough is a buyer-centric conversation. These habits keep you on that side of the table - and out of demo-mode reflexes.</p>
-          </div>
-          <div className="practice-grid">
-            {PRACTICES.map((p, i) => (
-              <div className="practice" key={i}>
-                <div className="step">{String(i + 1).padStart(2, '0')}</div>
-                <h4>{p.label}</h4>
-                <p>{p.body}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── Testimonial - between Practices and Flags ─────────── */}
       <Testimonial {...TESTIMONIALS.midPractices} />
 
-      {/* ── Red Flags ─────────────────────────────────────────── */}
-      <section className="flags">
-        <div className="flags-inner">
-          <div className="flags-head">
-            <span className="chip chip--red">Overheard in discovery</span>
-            <h2><em>Red flags</em> worth pausing for</h2>
-            <p>If you hear any of these, slow down. Each one warrants a conversation before you build a single demo slide.</p>
+      {/* ── Red Flags ── */}
+      <FadeUp>
+        <section className="flags">
+          <div className="flags-inner">
+            <div className="flags-head">
+              <span className="chip chip--red">Overheard in discovery</span>
+              <h2><em>Red flags</em> worth pausing for</h2>
+              <p>If you hear any of these, slow down. Each one warrants a conversation before you build a single demo slide.</p>
+            </div>
+            <div className="flag-list">
+              {RED_FLAGS.map((f, i) => <div className="flag" key={i}>{f}</div>)}
+            </div>
           </div>
-          <div className="flag-list">
-            {RED_FLAGS.map((f, i) => <div className="flag" key={i}>{f}</div>)}
-          </div>
-        </div>
-      </section>
+        </section>
+      </FadeUp>
 
-      {/* ── Post-Interview timeline ───────────────────────────── */}
-      <section className="section post">
-        <div className="section-inner">
-          <div className="post-head">
-            <span className="chip chip--red">After the call</span>
-            <h2 style={{ marginTop: '1.25rem' }}>Post-interview <em>actions</em></h2>
-            <p>The walkthrough is only valuable if you act on it. Four moves between the call and the demo.</p>
-          </div>
-          <div className="timeline">
-            {POST_INTERVIEW.map((s, i) => (
-              <div className="tl-step" key={i}>
-                <span className="marker">{i + 1}</span>
-                <h4>{s.label}</h4>
-                <p>{s.body}</p>
+      {/* ── Post-Interview ── */}
+      <FadeUp>
+        <section className="section post">
+          <div className="section-inner">
+            <div className="post-head">
+              <span className="chip chip--red">After the call</span>
+              <h2 style={{ marginTop: '1.25rem' }}>Post-interview <em>actions</em></h2>
+              <p>The walkthrough is only valuable if you act on it. Four moves between the call and the demo.</p>
+            </div>
+            <div className="timeline">
+              {POST_INTERVIEW.map((s, i) => (
+                <div className="tl-step" key={i}>
+                  <span className="marker">{i + 1}</span>
+                  <h4>{s.label}</h4>
+                  <p>{s.body}</p>
+                </div>
+              ))}
+            </div>
+            <div className="email-template">
+              <div className="email-template-label">Summary email template</div>
+              <div className="email-field">
+                <span className="email-field-key">Subject</span>
+                <span className="email-field-val">Our demo on [date]</span>
               </div>
-            ))}
-          </div>
-
-          {/* ── Summary email template ── */}
-          <div className="email-template">
-            <div className="email-template-label">Summary email template</div>
-            <div className="email-field">
-              <span className="email-field-key">Subject</span>
-              <span className="email-field-val">Our demo on [date]</span>
-            </div>
-            <div className="email-body">
-              <p>Hi [First Name],</p>
-              <p>Thank you for walking us through your workflow today. The level of detail you shared gave us a clear picture of how your team operates - and where the real pressure points are.</p>
-              <p>Based on what you shared, the areas we&apos;d focus on are:</p>
-              <ul>
-                <li>[Bottleneck 1]</li>
-                <li>[Bottleneck 2]</li>
-                <li>[Bottleneck 3]</li>
-              </ul>
-              <p>Our demo will be built around these specifically. You&apos;ll see how [Product] addresses [Outcome 1], [Outcome 2], and [Outcome 3].</p>
-              <p>I&apos;ll be in touch shortly to confirm the details. In the meantime, if anything we discussed prompts further questions, feel free to reach out directly.</p>
-              <p className="email-sig">Best regards,<br />[Your name]</p>
+              <div className="email-body">
+                <p>Hi [First Name],</p>
+                <p>Thank you for walking us through your workflow today. The level of detail you shared gave us a clear picture of how your team operates - and where the real pressure points are.</p>
+                <p>Based on what you shared, the areas we&apos;d focus on are:</p>
+                <ul>
+                  <li>[Bottleneck 1]</li>
+                  <li>[Bottleneck 2]</li>
+                  <li>[Bottleneck 3]</li>
+                </ul>
+                <p>Our demo will be built around these specifically. You&apos;ll see how [Product] addresses [Outcome 1], [Outcome 2], and [Outcome 3].</p>
+                <p>I&apos;ll be in touch shortly to confirm the details. In the meantime, if anything we discussed prompts further questions, feel free to reach out directly.</p>
+                <p className="email-sig">Best regards,<br />[Your name]</p>
+              </div>
             </div>
           </div>
+        </section>
+      </FadeUp>
 
-        </div>
-      </section>
-
-      {/* ── Testimonial - before CTA ──────────────────────────── */}
       <Testimonial {...TESTIMONIALS.preCta} />
 
-      {/* ── Download templates ───────────────────────────────── */}
-      <section className="downloads">
-        <div className="downloads-inner">
-          <div className="downloads-head">
-            <p className="kicker kicker--ink">Take it into your next meeting</p>
-            <h2>Stop winging discovery. <em>Run the OpWalk.</em></h2>
-            <p>Five-phase structured template for immediate use..</p>
-          </div>
-          <div className="downloads-grid">
-          {/*  <div className="download-card">
-              <div className="download-card-top">
-                <span className="download-logo download-logo--miro">M</span>
-                <span className="download-platform">Miro</span>
+      {/* ── Downloads ── */}
+      <FadeUp>
+        <section className="downloads">
+          <div className="downloads-inner">
+            <div className="downloads-head">
+              <p className="kicker kicker--ink">Take it into your next meeting</p>
+              <h2>Stop winging discovery. <em>Run the OpWalk.</em></h2>
+              <p>Five-phase structured template for immediate use.</p>
+            </div>
+            <div className="downloads-grid">
+              <div className="download-card">
+                <div className="download-card-top">
+                  <span className="download-logo download-logo--figjam">F</span>
+                  <span className="download-platform">FigJam</span>
+                </div>
+                <p className="download-desc">Five-phase board, AI signals legend included.</p>
+                <a href="/downloads/opwalk-template.jam" className="download-btn">Download FigJam template</a>
               </div>
-              <p className="download-desc">Operational Walkthrough template for Miro. Five-phase board, AI signals legend included.</p>
-              <a href="#" className="download-btn">Download Miro template</a>
-            </div> */}
-            <div className="download-card">
-              <div className="download-card-top">
-                <span className="download-logo download-logo--figjam">F</span>
-                <span className="download-platform">FigJam</span>
-              </div>
-              <p className="download-desc">Five-phase board, AI signals legend included.</p>
-              <a href="/downloads/opwalk-template.jam" className="download-btn">Download FigJam template</a>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </FadeUp>
 
-      {/* ── CTA + Booking embed ───────────────────────────────── */}
-      <section className="cta" id="booking">
-        <div className="cta-inner">
-          <div>
-            <p className="kicker">Is your team struggling to position your AI capabilities?</p>
-            <h2>Let&apos;s talk <em>through it.</em></h2>
-            <p>
-              A focused one-on-one for sales leaders. When discovery is built around your
-              prospect&apos;s processes - not your feature list - your demos land differently.
-              Prospects arrive at next steps with confidence, not hesitation.
-            </p>
-            <div className="cta-card">
-              <h3>What you&apos;ll leave with</h3>
-              <ul>
-                <li>Clarity on where your team&apos;s discovery is leaving decision confidence on the table</li>
-                <li>Clarity on which changes to make - and in what order</li>
-                <li>Clarity on whether structured, reinforced coaching is the right decision for your team</li>
-              </ul>
+      {/* ── CTA ── */}
+      <FadeUp>
+        <section className="cta" id="booking">
+          <div className="cta-inner">
+            <div>
+              <p className="kicker">Is your team struggling to position your AI capabilities?</p>
+              <h2>Let&apos;s talk <em>through it.</em></h2>
+              <p>
+                A focused one-on-one for sales leaders. When discovery is built around your
+                prospect&apos;s processes - not your feature list - your demos land differently.
+                Prospects arrive at next steps with confidence, not hesitation.
+              </p>
+              <div className="cta-card">
+                <h3>What you&apos;ll leave with</h3>
+                <ul>
+                  <li>Clarity on where your team&apos;s discovery is leaving decision confidence on the table</li>
+                  <li>Clarity on which changes to make - and in what order</li>
+                  <li>Clarity on whether structured, reinforced coaching is the right decision for your team</li>
+                </ul>
+              </div>
             </div>
+            <CalEmbed calLink={CAL_LINK} slug="opwalk" />
           </div>
-          {/* Cal.com embed - lazy-loaded via IntersectionObserver */}
-          <CalEmbed calLink={CAL_LINK} slug="opwalk" />
-        </div>
-      </section>
+        </section>
+      </FadeUp>
 
     </main>
   )
