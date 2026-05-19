@@ -2,6 +2,8 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
+import { motion } from 'motion/react'
+import { fadeUp, fadeUpStagger } from '@/lib/animations'
 
 export default function HeroSection() {
   return (
@@ -22,8 +24,14 @@ export default function HeroSection() {
       <div className="max-w-[1200px] mx-auto px-[5%] py-16 grid grid-cols-1 md:grid-cols-[1.1fr_0.9fr] items-center gap-16 relative z-10 w-full">
 
         {/* Left: content */}
-        <div className="fade-up-children flex flex-col">
-          <p
+        <motion.div
+          className="flex flex-col"
+          variants={fadeUpStagger}
+          initial="hidden"
+          animate="visible"
+        >
+          <motion.p
+            variants={fadeUp}
             className="inline-flex items-center gap-2 self-start px-3 py-1 rounded-full text-[0.75rem] tracking-[0.18em] uppercase font-medium mb-7"
             style={{
               color: 'rgba(255,255,255,0.9)',
@@ -32,9 +40,10 @@ export default function HeroSection() {
             }}
           >
             B2B &nbsp;&bull;&nbsp; Decision Confidence &nbsp;&bull;&nbsp; Enterprise Sales
-          </p>
+          </motion.p>
 
-          <h1
+          <motion.h1
+            variants={fadeUp}
             className="font-display font-medium italic mb-7 text-white"
             style={{ fontSize: 'clamp(2.8rem, 4.2vw, 4.2rem)', lineHeight: 1.12 }}
           >
@@ -42,9 +51,10 @@ export default function HeroSection() {
             to sell software.<br />
             It is to enable<br />
             <em className="not-italic" style={{ color: 'var(--color-sage-mid)' }}>decision confidence.</em>
-          </h1>
+          </motion.h1>
 
-          <p
+          <motion.p
+            variants={fadeUp}
             className="mb-4"
             style={{
               fontSize: '1rem',
@@ -54,8 +64,10 @@ export default function HeroSection() {
             }}
           >
             Most B2B SaaS teams don't lose deals because of product gaps. They lose because buyers cannot confidently justify a decision.
-          </p>
-          <p
+          </motion.p>
+
+          <motion.p
+            variants={fadeUp}
             className="mb-11"
             style={{
               fontSize: '1rem',
@@ -65,9 +77,9 @@ export default function HeroSection() {
             }}
           >
             I help CROs and GTM leaders build the system that changes that.
-          </p>
+          </motion.p>
 
-          <div className="flex flex-wrap items-center gap-4">
+          <motion.div variants={fadeUp} className="flex flex-wrap items-center gap-4">
             <Link
               href="#contact"
               className="inline-block font-body text-xs tracking-[0.1em] uppercase font-medium px-8 py-3 transition-colors rounded-sm"
@@ -86,8 +98,8 @@ export default function HeroSection() {
             >
               See the System
             </Link>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
 
         {/* Right: photo */}
         <div className="hidden md:flex justify-end items-center">
